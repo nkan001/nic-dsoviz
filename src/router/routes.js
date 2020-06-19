@@ -13,7 +13,8 @@ const routes = [
       { path: '/charts/bar', name: 'Bar', component: () => import('pages/charts/Bar.vue') },
       { path: '/charts/d3star', name: 'D3Star', component: () => import('pages/charts/d3Star.vue') },
       { path: '/geospatial/choropleth', name: 'Choropleth', component: () => import('pages/geospatial/ChoroplethMap.vue') },
-      { path: '/charts/d3bar', name: 'D3Bar', component: () => import('pages/charts/d3Bar.vue') }
+      { path: '/charts/d3bar', name: 'D3Bar', component: () => import('pages/charts/d3Bar.vue') },
+      { path: '/graphs/COVID', name: 'COVID', component: () => import('pages/graphs/COVID.vue') }
     ]
   }
 ]

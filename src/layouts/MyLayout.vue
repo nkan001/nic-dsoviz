@@ -1,5 +1,4 @@
 //Layout for the app
-
 <template>
   <q-layout view="hHh Lpr lff">
     <q-header elevated class="bg-black">
@@ -76,6 +75,13 @@
           icon="blur_circular"
           label="Graphs"
         >
+          <q-item dense clickable class="app-menu-item" to="/graphs/covid">
+            <q-item-section avatar></q-item-section>
+            <q-item-section>
+              <q-item-label>COVID Graphs</q-item-label>
+              <q-item-label caption>Many graphs</q-item-label>
+            </q-item-section>
+          </q-item>
         </q-expansion-item>
         <q-expansion-item
           expand-separator
