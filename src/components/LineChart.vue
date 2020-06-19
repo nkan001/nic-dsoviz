@@ -30,6 +30,9 @@ export default {
     this.gradient2.addColorStop(0.5, 'rgba(0, 231, 255, 0.25)')
     this.gradient2.addColorStop(1, 'rgba(0, 231, 255, 0)')
 
+    this.chartData.datasets[0].borderColor = 'red'
+    this.chartData.datasets[1].borderColor = 'blue'
+
     this.chartData.datasets[0].backgroundColor = this.gradient1
     this.chartData.datasets[1].backgroundColor = this.gradient2
     console.log('TESTING:' + this.gradient1)

@@ -62,20 +62,18 @@ export default {
         datasets: [
           {
             label: 'Data One',
-            backgroundColor: '#f0c5c5',
-            borderColor: '#f87979',
+            backgroundColor: '#39ff14',
+            borderColor: '#39ff14',
             pointBackgroundColor: 'white',
             borderWidth: 1,
-            pointBorderColor: '#249EBF',
             data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
           },
           {
             label: 'Data Two',
-            backgroundColor: '#cae3e8',
-            borderColor: '#98e5f5',
+            backgroundColor: '#FF9933',
+            borderColor: '#FF9933',
             pointBackgroundColor: 'white',
             borderWidth: 1,
-            pointBorderColor: '#6640ed',
             data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
           }
         ]
