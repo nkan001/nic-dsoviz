@@ -56,11 +56,18 @@
               <q-item-label caption>Recative Bar chart</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item dense clickable class="app-menu-item" to="/d3">
+          <q-item dense clickable class="app-menu-item" to="/charts/d3star">
             <q-item-section avatar></q-item-section>
             <q-item-section>
-              <q-item-label>D3</q-item-label>
+              <q-item-label>D3 Star</q-item-label>
               <q-item-label caption>Testing D3</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item dense clickable class="app-menu-item" to="/charts/d3bar">
+            <q-item-section avatar></q-item-section>
+            <q-item-section>
+              <q-item-label>D3 Bar</q-item-label>
+              <q-item-label caption>Testing D3 Chart</q-item-label>
             </q-item-section>
           </q-item>
         </q-expansion-item>
@@ -81,6 +88,13 @@
           icon="my_location"
           label="Geospatial"
         >
+          <q-item dense clickable class="app-menu-item" to="/geospatial/choropleth">
+              <q-item-section avatar></q-item-section>
+              <q-item-section>
+                <q-item-label>Choropleth Map</q-item-label>
+                <q-item-label caption>Map</q-item-label>
+              </q-item-section>
+            </q-item>
         </q-expansion-item>
       </q-list>
     </q-drawer>

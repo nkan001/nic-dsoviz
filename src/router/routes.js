@@ -11,7 +11,9 @@ const routes = [
       { path: '/charts/polar', name: 'Polar', component: () => import('pages/charts/Polar.vue') },
       { path: '/charts/line', name: 'Line', component: () => import('pages/charts/Line.vue') },
       { path: '/charts/bar', name: 'Bar', component: () => import('pages/charts/Bar.vue') },
-      { path: '/d3', name: 'D3', component: () => import('pages/d3testing.vue') }
+      { path: '/charts/d3star', name: 'D3Star', component: () => import('pages/charts/d3Star.vue') },
+      { path: '/geospatial/choropleth', name: 'Choropleth', component: () => import('pages/geospatial/ChoroplethMap.vue') },
+      { path: '/charts/d3bar', name: 'D3Bar', component: () => import('pages/charts/d3Bar.vue') }
     ]
   }
 ]
