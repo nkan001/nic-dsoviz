@@ -1,15 +1,22 @@
 <template lang="html">
-  <section>
-    <svg width="500" height="500">
-      <path class="radial"
-        :d="radialData"
-        transform="translate(250,250)"
-        fill="green"
-      ></path>
-    </svg>
+  <q-page class="flex flex-center">
+    <section>
+      <svg width="500" height="500">
+        <path class="radial"
+          :d="radialData"
+          transform="translate(250,250)"
+          :fill="starColor"
+        ></path>
+      </svg>
 
-    <input type="range" name="rays" min="4" max="60" v-model="rays">
-  </section>
+      <div class="col">
+        <button class="button" @click="randomColor()"> Change Color</button>
+      </div>
+      <div>
+        <input type="range" name="rays" min="4" max="60" v-model="rays">
+      </div>
+    </section>
+  </q-page>
 </template>
 
 <script>
@@ -20,7 +27,8 @@ export default {
   data () {
     return {
       outerRadius: 200,
-      rays: 8
+      rays: 8,
+      starColor: 'green'
     }
   },
   computed: {
@@ -39,6 +47,16 @@ export default {
     radialData () {
       const radialLineGenerator = lineRadial()
       return radialLineGenerator(this.radialPoints)
+    }
+  },
+  methods: {
+    randomColor () {
+      var letters = '0123456789ABCDEF'
+      var color = '#'
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)]
+      }
+      this.starColor = color
     }
   }
 }

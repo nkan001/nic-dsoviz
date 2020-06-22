@@ -123,14 +123,14 @@
 .leaflet-top,
 .leaflet-bottom {
 	position: absolute;
-	z-index: 1000;
+	z-index: 2000;
 	pointer-events: none;
 	}
 .leaflet-top {
 	top: 0;
 	}
 .leaflet-right {
-	right: 0;
+	right: 100px;
 	}
 .leaflet-bottom {
 	bottom: 0;
@@ -245,7 +245,7 @@
 /* visual tweaks */
 
 .leaflet-container {
-	background: #ddd;
+
 	outline: 0;
 	}
 .leaflet-container a {

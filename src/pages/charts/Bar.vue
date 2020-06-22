@@ -6,7 +6,10 @@
       :width="500" :height="500"
     />
     <reactive :chart-data="datacollection"></reactive>
-    <button class="button is-primary" @click="fillData()">Randomize</button>
+    <div>
+      <button class="button is-primary col" @click="fillData()">Randomize</button>
+      <button class="button is-primary col orange-btn" @click="orangeColor()">Orange</button>
+    </div>
   </q-page>
 </template>
 
@@ -20,7 +23,17 @@ export default {
   data () {
     return {
     // instantiating datacollection with null
-      datacollection: null,
+      datacollection: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        datasets: [
+          {
+            label: 'Data One',
+            backgroundColor: 'orange',
+            // Data for the x-axis of the chart
+            data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
+          }
+        ]
+      },
       options: {
         scales: {
           yAxes: [{
@@ -50,6 +63,9 @@ export default {
     this.fillData()
   },
   methods: {
+    orangeColor () {
+      this.datacollection.datasets[0] = 'orange'
+    },
     fillData () {
       this.datacollection = {
         // Data for the y-axis of the chart
@@ -71,3 +87,13 @@ export default {
   }
 }
 </script>
+
+<style media="screen">
+  .button {
+    margin-left: 20px;
+  }
+
+  .orange-btn {
+    background-color: orange;
+  }
+</style>

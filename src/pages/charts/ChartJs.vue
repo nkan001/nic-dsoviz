@@ -62,7 +62,7 @@ export default {
       }]
     }
   }
-  }
+},
   methods: {
     createChart(chartId, chartData) {
       const ctx = document.getElementById(chartId);

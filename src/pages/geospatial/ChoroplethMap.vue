@@ -1,14 +1,16 @@
 <template>
-  <div id="app">
-    <l-map :center="[-23.752961, -57.854357]" :zoom="6" style="height: 500px;" :options="mapOptions">
-      <l-choropleth-layer :data="pyDepartmentsData" titleKey="department_name" idKey="department_id" :value="value" :extraValues="extraValues" geojsonIdKey="dpto" :geojson="paraguayGeojson" :colorScale="colorScale">
-        <template slot-scope="props">
-          <l-info-control :item="props.currentItem" :unit="props.unit" title="Department" placeholder="Hover over a department"/>
-          <l-reference-chart title="Girls school enrolment" :colorScale="colorScale" :min="props.min" :max="props.max" position="topright"/>
-        </template>
-      </l-choropleth-layer>
-    </l-map>
-  </div>
+  <q-page>
+    <div>
+      <l-map :center="[-23.752961, -57.854357]" :zoom="6" style="height: 1000px;" :options="mapOptions">
+        <l-choropleth-layer :data="pyDepartmentsData" titleKey="department_name" idKey="department_id" :value="value" :extraValues="extraValues" geojsonIdKey="dpto" :geojson="paraguayGeojson" :colorScale="colorScale">
+          <template slot-scope="props">
+            <l-info-control :item="props.currentItem" :unit="props.unit" title="Department" placeholder="Hover over a department"/>
+            <l-reference-chart title="Girls school enrolment" :colorScale="colorScale" :min="props.min" :max="props.max" position="topright"/>
+          </template>
+        </l-choropleth-layer>
+      </l-map>
+    </div>
+  </q-page>
 </template>
 
 <script>
@@ -51,9 +53,9 @@ export default {
 body {
   background-color: #e7d090;
   margin-left: 100px;
-  margin-right: 100px;
+  margin-right: 200px;
 }
-#map {
+/* #map {
   background-color: #eee;
-}
+} */
 </style>

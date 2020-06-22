@@ -1,10 +1,13 @@
 <template>
-<div>
-  <h2>D3 Bar Chart</h2>
-  <div class="container-chart text-align-left">
-    <div class="chart"></div>
-  </div>
-</div>
+  <q-page class="flex flex-center">
+    <div>
+      <h2>D3 Bar Chart</h2>
+      <div class="container-chart text-align-left">
+        <div class="chart"></div>
+      </div>
+    </div>
+  </q-page>
+
 </template>
 <script>
 import * as d3 from 'd3'
@@ -19,8 +22,9 @@ export default {
       .selectAll('div')
       .data(data)
       .enter().append('div')
+      .style('height', '50px')
       .style('width', function (d) {
-        return d * 10 + 'px'
+        return d * 20 + 'px'
       })
       .text(function (d) {
         return d
@@ -35,8 +39,9 @@ export default {
 h2 {
   color: white;
 }
+
 .chart div {
-  font: 10px sans-serif;
+  font: 30px sans-serif;
   background-color: steelblue;
   text-align: right;
   padding: 3px;
