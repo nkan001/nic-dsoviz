@@ -69,6 +69,20 @@
               <q-item-label caption>Testing D3 Chart</q-item-label>
             </q-item-section>
           </q-item>
+          <q-item dense clickable class="app-menu-item" to="/charts/d3area">
+            <q-item-section avatar></q-item-section>
+            <q-item-section>
+              <q-item-label>D3 Area Chart</q-item-label>
+              <q-item-label caption>Interactive D3 Area Chart</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item dense clickable class="app-menu-item" to="/charts/inputbubble">
+            <q-item-section avatar></q-item-section>
+            <q-item-section>
+              <q-item-label>Bubbles</q-item-label>
+              <q-item-label caption>Reactive Bubbles</q-item-label>
+            </q-item-section>
+          </q-item>
         </q-expansion-item>
         <q-expansion-item
           expand-separator
