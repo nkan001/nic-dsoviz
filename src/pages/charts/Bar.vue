@@ -7,8 +7,8 @@
     />
     <reactive :chart-data="datacollection"></reactive>
     <div>
-      <button class="button is-primary col" @click="fillData()">Randomize</button>
-      <button class="button is-primary col orange-btn" @click="orangeColor()">Orange</button>
+      <button class="button is-primary col" @click="fillData('#80e8da')">Randomize</button>
+      <button class="button is-primary col orange-btn" @click="fillData('orange')">Orange</button>
     </div>
   </q-page>
 </template>
@@ -23,17 +23,7 @@ export default {
   data () {
     return {
     // instantiating datacollection with null
-      datacollection: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        datasets: [
-          {
-            label: 'Data One',
-            backgroundColor: 'orange',
-            // Data for the x-axis of the chart
-            data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
-          }
-        ]
-      },
+      datacollection: null,
       options: {
         scales: {
           yAxes: [{
@@ -60,20 +50,17 @@ export default {
   },
   created () {
     // anytime the vue instance is created, call the fillData() function.
-    this.fillData()
+    this.fillData('#80e8da')
   },
   methods: {
-    orangeColor () {
-      this.datacollection.datasets[0] = 'orange'
-    },
-    fillData () {
+    fillData (color) {
       this.datacollection = {
         // Data for the y-axis of the chart
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         datasets: [
           {
             label: 'Data One',
-            backgroundColor: '#80e8da',
+            backgroundColor: color,
             // Data for the x-axis of the chart
             data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
           }

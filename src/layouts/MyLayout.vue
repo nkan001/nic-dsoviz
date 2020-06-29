@@ -83,6 +83,13 @@
               <q-item-label caption>Reactive Bubbles</q-item-label>
             </q-item-section>
           </q-item>
+          <q-item dense clickable class="app-menu-item" to="/charts/ancestry">
+            <q-item-section avatar></q-item-section>
+            <q-item-section>
+              <q-item-label>Ancestry Chart</q-item-label>
+              <q-item-label caption>European</q-item-label>
+            </q-item-section>
+          </q-item>
         </q-expansion-item>
         <q-expansion-item
           expand-separator
@@ -94,6 +101,13 @@
             <q-item-section>
               <q-item-label>COVID Graphs</q-item-label>
               <q-item-label caption>Many graphs</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item dense clickable class="app-menu-item" to="/graphs/weather">
+            <q-item-section avatar></q-item-section>
+            <q-item-section>
+              <q-item-label>Weather Graphs</q-item-label>
+              <q-item-label caption>Over 5 days</q-item-label>
             </q-item-section>
           </q-item>
         </q-expansion-item>

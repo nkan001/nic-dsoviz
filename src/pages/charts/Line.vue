@@ -2,12 +2,13 @@
   <div>
     <q-page class="flex flex-center">
       <line-chart
+      ref="lineChart"
       :chart-data="datacollection"
       :options="options"
       :width="500" :height="500">
     </line-chart>
       <reactive :chart-data="datacollection"></reactive>
-      <button class="button is-primary" @click="randomiseData()">Randomize</button>
+      <button class="button is-primary" @click="randomiseData(setGradient1(), setGradient2())">Randomize</button>
     </q-page>
   </div>
 
@@ -23,6 +24,8 @@ export default {
   data () {
     return {
       datacollection: null,
+      gradient1: null,
+      gradient2: null,
       // Chart.js options that controls the appearance of the chart
       options: {
         scales: {
@@ -56,23 +59,42 @@ export default {
     getRandomInt () {
       return Math.floor(Math.random() * (50 - 5 + 1)) + 5
     },
-    randomiseData () {
+    setGradient1 () {
+      this.gradient1 = this.$refs.lineChart.$refs.canvas
+        .getContext('2d')
+        .createLinearGradient(0, 0, 0, 450)
+      this.gradient1.addColorStop(0, 'rgba(255, 0,0, 0.5)')
+      this.gradient1.addColorStop(0.5, 'rgba(255, 0, 0, 0.25)')
+      this.gradient1.addColorStop(1, 'rgba(255, 0, 0, 0)')
+
+      return this.gradient1
+    },
+    setGradient2 () {
+      this.gradient2 = this.$refs.lineChart.$refs.canvas
+        .getContext('2d')
+        .createLinearGradient(0, 0, 0, 450)
+
+      this.gradient2.addColorStop(0, 'rgba(0, 231, 255, 0.9)')
+      this.gradient2.addColorStop(0.5, 'rgba(0, 231, 255, 0.25)')
+      this.gradient2.addColorStop(1, 'rgba(0, 231, 255, 0)')
+
+      return this.gradient2
+    },
+    randomiseData (g1, g2) {
       this.datacollection = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         datasets: [
           {
             label: 'Data One',
-            backgroundColor: '#39ff14',
-            borderColor: '#39ff14',
-            pointBackgroundColor: 'white',
+            backgroundColor: g1,
+            borderColor: 'red',
             borderWidth: 1,
             data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
           },
           {
             label: 'Data Two',
-            backgroundColor: '#FF9933',
-            borderColor: '#FF9933',
-            pointBackgroundColor: 'white',
+            backgroundColor: g2,
+            borderColor: 'blue',
             borderWidth: 1,
             data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
           }

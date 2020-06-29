@@ -18,7 +18,7 @@
         <div class="control" v-for="flower in flowers" :key="flower.name">
           <label
           class="back"
-          :class="flower.color"
+          :class="flower.name"
           style="margin-bottom: 0px"
           >{{ flower.name }}</label>
           <input type="number" v-model="flower.amount" step="10" min="10">
