@@ -129,6 +129,13 @@
                 <q-item-label caption>Map</q-item-label>
               </q-item-section>
             </q-item>
+            <q-item dense clickable class="app-menu-item" to="/geospatial/googlemap">
+                <q-item-section avatar></q-item-section>
+                <q-item-section>
+                  <q-item-label>Google Map</q-item-label>
+                  <q-item-label caption>With User location</q-item-label>
+                </q-item-section>
+              </q-item>
         </q-expansion-item>
       </q-list>
     </q-drawer>

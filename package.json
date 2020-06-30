@@ -24,8 +24,10 @@
     "numeral": "^2.0.6",
     "quasar": "^1.0.0",
     "tween.js": "^16.6.0",
+    "vue-browser-geolocation": "^1.8.0",
     "vue-chartjs": "^3.5.0",
-    "vue-choropleth": "^0.3.1"
+    "vue-choropleth": "^0.3.1",
+    "vue2-google-maps": "^0.10.7"
   },
   "devDependencies": {
     "@quasar/app": "^1.0.0",

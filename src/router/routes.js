@@ -18,7 +18,8 @@ const routes = [
       { path: '/charts/inputbubble', name: 'InputBubble', component: () => import('pages/charts/InputBubble.vue') },
       { path: '/charts/d3area', name: 'D3Area', component: () => import('pages/charts/D3Area.vue') },
       { path: '/charts/ancestry', name: 'Ancestry', component: () => import('pages/charts/Ancestry.vue') },
-      { path: '/graphs/weather', name: 'Weather', component: () => import('pages/graphs/Weather.vue') }
+      { path: '/graphs/weather', name: 'Weather', component: () => import('pages/graphs/Weather.vue') },
+      { path: '/geospatial/googlemap', name: 'GoogleMap', component: () => import('pages/geospatial/GoogleMap.vue') }
     ]
   }
 ]
