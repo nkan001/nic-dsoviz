@@ -97,6 +97,13 @@
               <q-item-label caption>FB 207 Pages data</q-item-label>
             </q-item-section>
           </q-item>
+          <q-item dense clickable class="app-menu-item" to="/charts/sortablebar">
+            <q-item-section avatar></q-item-section>
+            <q-item-section>
+              <q-item-label>Sortable Bar Chart</q-item-label>
+              <q-item-label caption></q-item-label>
+            </q-item-section>
+          </q-item>
         </q-expansion-item>
         <q-expansion-item
           expand-separator

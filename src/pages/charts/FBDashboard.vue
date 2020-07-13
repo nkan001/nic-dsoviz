@@ -2,11 +2,22 @@
     <div class="col">
       <div class="row">
 
-        <div class="q-pa-md bg-grey-10 text-white">
-          <q-list class="list-area" dark separator style="width: 320px">
-            <q-scroll-area style="height: 500px; max-width: 300px;">
+        <div class="q-pa-lg bg-grey-10 text-white">
+          <q-input
+          class="search-box"
+          filled
+          dark
+          v-model="searchList"
+          label="Page Name"
+          />
+          <q-list
+          v-if="showList"
+          class="list-area"
+          dark
+          separator style="width: 320px">
+            <q-scroll-area style="height: 430px; max-width: 300px;">
               <q-item
-                v-for="(name, index) in distinctNames"
+                v-for="(name, index) in filteredList"
                 :key="index"
                 clickable
                 v-ripple
@@ -21,12 +32,14 @@
           <h2>{{ clickedName }}</h2>
           <div class="row">
             <q-btn
+              class="btn"
               color="white"
               text-color="black"
               label="Reset All"
               @click="defaultChart()"/>
               <br/>
               <q-btn
+              class="btn"
               v-show="showBtn"
               color="white"
               text-color="black"
@@ -61,6 +74,8 @@ export default {
   data () {
     return {
       pagesURL: 'http://127.0.0.1:5500/src/data/fbdata.csv',
+      searchList: '',
+      showList: true,
       showBtn: true,
       pageNames: [],
       pageDetails: [],
@@ -238,6 +253,13 @@ export default {
       }
     }
   },
+  computed: {
+    filteredList () {
+      return this.distinctNames.filter(post => {
+        return post.toLowerCase().includes(this.searchList.toLowerCase())
+      })
+    }
+  },
   async mounted () {
     await this.getData()
     this.defaultChart()
@@ -245,10 +267,22 @@ export default {
 }
 </script>
 
-<style Lang="css" scoped>
+<style Lang="css">
 h1,h2,p {
   color: white;
   text-align: center;
+}
+
+.btn {
+  margin: 10px;
+}
+
+.search-box {
+  margin-bottom: 20px;
+}
+
+.q-field__control-container {
+  margin-left: 10px;
 }
 
 </style>

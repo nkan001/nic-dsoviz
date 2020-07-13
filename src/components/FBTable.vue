@@ -1,6 +1,7 @@
 <template>
     <div class="q-pa-md">
     <q-table
+      class="table"
       title="FBData Table"
       :data="data"
       :columns="columns"
@@ -9,14 +10,16 @@
       :loading="loading"
       >
         <template v-slot:top>
-          <q-btn
-          class="refresh-btn"
-          color="white"
-          text-color="black"
-          label="Reset"
-          @click="reset()"/>
+          <div class="q-pa-sm">
+            <q-btn
+              class="refresh-btn"
+              color="white"
+              text-color="black"
+              label="Reset"
+              @click="reset()"/>
+          </div>
           <q-space />
-          <q-input outlined dense debounce="500" color="primary" v-model="filtering">
+          <q-input borderless dense debounce="500" color="primary" v-model="filtering">
           </q-input>
         </template>
 
@@ -40,37 +43,37 @@ export default {
         {
           name: 'Ad Date',
           align: 'center',
-          label: 'date',
+          label: 'Date',
           field: 'date'
         },
         {
           name: 'Page Name',
-          label: 'name',
+          label: 'Page Name',
           field: 'name'
         },
         {
           name: 'Alias',
-          label: 'alias',
+          label: 'Alias',
           field: 'alias'
         },
         {
           name: 'Likes',
-          label: 'likes',
+          label: 'Likes',
           field: 'likes'
         },
         {
           name: 'Category',
-          label: 'category',
+          label: 'Category',
           field: 'category'
         },
         {
           name: 'Insta Username',
-          label: 'username',
+          label: 'Username',
           field: 'username'
         },
         {
           name: 'Insta Followers',
-          label: 'followers',
+          label: 'Followers',
           field: 'followers'
         }
       ]
@@ -95,18 +98,12 @@ export default {
 }
 </script>
 
-<style lang="css">
-h1 {
-  color: white;
-}
-
-q-input {
-  width: 200px;
-}
-
+<style>
 .refresh-btn {
-  padding: -5px;
-  margin: 30px;
+  padding-left: 30px
 }
 
+.table {
+  background-color: #f2f0eb;
+}
 </style>
