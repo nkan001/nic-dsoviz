@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import 'bootstrap/dist/css/bootstrap.css'
 import VueGeolocation from 'vue-browser-geolocation'
+import JsonCSV from 'vue-json-csv'
 
 import routes from './routes'
 
@@ -14,8 +15,8 @@ Vue.use(VueGoogleMaps, {
     key: 'AIzaSyDUgKVQ5UznIVze3xg-oIsvCvJEyYempBw'
   }
 })
-// Original: AIzaSyBmqHmn1w7kr82fUomySSLCW2_nSAy3pbM
 
+Vue.component('downloadCsv', JsonCSV)
 /*
  * If not building with SSR mode, you can
  * directly export the Router instantiation

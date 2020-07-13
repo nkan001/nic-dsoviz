@@ -1,0 +1,254 @@
+<template>
+    <div class="col">
+      <div class="row">
+
+        <div class="q-pa-md bg-grey-10 text-white">
+          <q-list class="list-area" dark separator style="width: 320px">
+            <q-scroll-area style="height: 500px; max-width: 300px;">
+              <q-item
+                v-for="(name, index) in distinctNames"
+                :key="index"
+                clickable
+                v-ripple
+                @click="clickedList(name)">
+                  <q-item-section>{{ name }}</q-item-section>
+                </q-item>
+            </q-scroll-area>
+          </q-list>
+        </div>
+
+        <div class="col">
+          <h2>{{ clickedName }}</h2>
+          <div class="row">
+            <q-btn
+              color="white"
+              text-color="black"
+              label="Reset All"
+              @click="defaultChart()"/>
+              <br/>
+              <q-btn
+              v-show="showBtn"
+              color="white"
+              text-color="black"
+              label="Remove Highest"
+              @click="removeData()"/>
+          </div>
+            <LineChart
+              :chart-data="chartdata"
+              :options="options"
+            />
+        </div>
+      </div>
+      <br/>
+      <FBTable
+        :data="pageDetails"
+        :toSearch="clickedName">
+      </FBTable>
+    </div>
+</template>
+
+<script>
+import * as d3 from 'd3'
+import FBTable from 'src/components/FBTable'
+import LineChart from 'src/components/FBChart'
+import moment from 'moment'
+
+export default {
+  components: {
+    FBTable,
+    LineChart
+  },
+  data () {
+    return {
+      pagesURL: 'http://127.0.0.1:5500/src/data/fbdata.csv',
+      showBtn: true,
+      pageNames: [],
+      pageDetails: [],
+      distinctNames: [],
+      distinctCategories: [],
+      likes: [],
+      followers: [],
+      clickedName: null,
+      chartdata: {},
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    }
+  },
+  methods: {
+    parseDate (date) {
+      return moment(date, 'YYYYMMDD').format('Do MMM YY')
+    },
+    clickedList (no) {
+      this.clickedName = no
+      this.showBtn = false
+      this.getChartData()
+    },
+    defaultChart () {
+      this.showBtn = true
+      this.clickedName = ''
+      let categories = []
+      this.pageDetails.forEach(d => {
+        if (d.category != null) {
+          categories.push(d.category)
+        }
+      })
+      this.distinctCategories = [...new Set(categories)]
+      this.distinctCategories.sort()
+      let categoryLikes = []
+      for (let j = 0; j < this.distinctCategories.length; j++) {
+        categoryLikes.push(0)
+      }
+      this.pageDetails.forEach((d, i) => {
+        for (let j = 0; j < this.distinctCategories.length; j++) {
+          if (d.category === this.distinctCategories[j]) {
+            categoryLikes[j] += d.likes
+          }
+        }
+      })
+      let categoryFollowers = []
+      for (let j = 0; j < this.distinctCategories.length; j++) {
+        categoryFollowers.push(0)
+      }
+      this.pageDetails.forEach((d, i) => {
+        for (let j = 0; j < this.distinctCategories.length; j++) {
+          if (d.category === this.distinctCategories[j]) {
+            categoryFollowers[j] += d.followers
+          }
+        }
+      })
+      this.likes = categoryLikes
+      this.followers = categoryFollowers
+      this.chartdata = {
+        labels: this.distinctCategories,
+        datasets: [
+          {
+            label: 'Likes',
+            backgroundColor: '#f87979',
+            borderColor: '#f87979',
+            fill: false,
+            data: categoryLikes
+          },
+          {
+            label: 'Followers',
+            backgroundColor: '#adedde',
+            borderColor: '#adedde',
+            fill: false,
+            data: categoryFollowers
+          }
+        ]
+      }
+    },
+    async getData () {
+      const pagesData = await d3.csv(this.pagesURL, d3.autoType)
+      await pagesData.forEach(d => {
+        const name = d.pageName
+        this.pageNames.push(name)
+        let pageObject
+        if (d.igUsername != null) {
+          pageObject = {
+            date: this.parseDate(d.adLibraryDate),
+            name: d.pageName,
+            alias: d.pageAlias,
+            likes: d.likes,
+            category: d.pageCategory,
+            instagram: true,
+            username: d.igUsername,
+            followers: d.igFollowers }
+        } else {
+          pageObject = {
+            date: this.parseDate(d.adLibraryDate),
+            name: d.pageName,
+            alias: d.pageAlias,
+            likes: d.likes,
+            category: d.pageCategory,
+            instagram: false,
+            username: 'nil',
+            followers: 'nil'
+          }
+        }
+        this.pageDetails.push(pageObject)
+      })
+      this.distinctNames = [...new Set(this.pageNames)]
+      this.distinctNames.forEach((d, i) => {
+        if (d == null) {
+          this.distinctNames.splice(i, 1)
+        }
+      })
+      this.distinctNames.sort()
+    },
+    getChartData () {
+      let chartLabel = this.clickedName
+      let likes = []
+      let date = []
+      let followers = []
+      this.pageDetails.forEach(d => {
+        if (d.name === chartLabel) {
+          likes.push(d.likes)
+          date.push(d.date)
+          followers.push(d.followers)
+        }
+      })
+      this.chartdata = {
+        labels: date,
+        datasets: [
+          {
+            label: 'Likes',
+            backgroundColor: '#f87979',
+            borderColor: '#f87979',
+            fill: false,
+            data: likes
+          },
+          {
+            label: 'Followers',
+            backgroundColor: '#adedde',
+            borderColor: '#adedde',
+            fill: false,
+            data: followers
+          }
+        ]
+      }
+    },
+    removeData () {
+      let categoryLikes = this.likes
+      let index = categoryLikes.indexOf(Math.max(...categoryLikes))
+      this.distinctCategories.splice(index, 1)
+      this.likes.splice(index, 1)
+      this.followers.splice(index, 1)
+
+      this.chartdata = {
+        labels: this.distinctCategories,
+        datasets: [
+          {
+            label: 'Likes',
+            backgroundColor: '#f87979',
+            borderColor: '#f87979',
+            fill: false,
+            data: this.likes
+          },
+          {
+            label: 'Followers',
+            backgroundColor: '#adedde',
+            borderColor: '#adedde',
+            fill: false,
+            data: this.followers
+          }
+        ]
+      }
+    }
+  },
+  async mounted () {
+    await this.getData()
+    this.defaultChart()
+  }
+}
+</script>
+
+<style Lang="css" scoped>
+h1,h2,p {
+  color: white;
+  text-align: center;
+}
+
+</style>

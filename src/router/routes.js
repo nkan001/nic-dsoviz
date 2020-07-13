@@ -17,9 +17,11 @@ const routes = [
       { path: '/graphs/COVID', name: 'COVID', component: () => import('pages/graphs/COVID.vue') },
       { path: '/charts/inputbubble', name: 'InputBubble', component: () => import('pages/charts/InputBubble.vue') },
       { path: '/charts/d3area', name: 'D3Area', component: () => import('pages/charts/D3Area.vue') },
-      { path: '/charts/ancestry', name: 'Ancestry', component: () => import('pages/charts/Ancestry.vue') },
+      { path: '/charts/fbdashboard', name: 'FBDashboard', component: () => import('pages/charts/FBDashboard.vue') },
       { path: '/graphs/weather', name: 'Weather', component: () => import('pages/graphs/Weather.vue') },
-      { path: '/geospatial/googlemap', name: 'GoogleMap', component: () => import('pages/geospatial/GoogleMap.vue') }
+      { path: '/geospatial/googlemap', name: 'GoogleMap', component: () => import('pages/geospatial/GoogleMap.vue') },
+      { path: '/charts/scatterplot', name: 'Scatterplot', component: () => import('pages/charts/ScatterplotMenu.vue') },
+      { path: '/geospatial/interactivechoropleth', name: 'InteractiveChoropleth', component: () => import('pages/geospatial/InteractiveChoropleth.vue') }
     ]
   }
 ]

@@ -83,11 +83,18 @@
               <q-item-label caption>Reactive Bubbles</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item dense clickable class="app-menu-item" to="/charts/ancestry">
+          <q-item dense clickable class="app-menu-item" to="/charts/scatterplot">
             <q-item-section avatar></q-item-section>
             <q-item-section>
-              <q-item-label>Ancestry Chart</q-item-label>
-              <q-item-label caption>European</q-item-label>
+              <q-item-label>Scatterplot</q-item-label>
+              <q-item-label caption>w Menu selection </q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item dense clickable class="app-menu-item" to="/charts/fbdashboard">
+            <q-item-section avatar></q-item-section>
+            <q-item-section>
+              <q-item-label>FB Dashboard</q-item-label>
+              <q-item-label caption>FB 207 Pages data</q-item-label>
             </q-item-section>
           </q-item>
         </q-expansion-item>
@@ -134,6 +141,13 @@
                 <q-item-section>
                   <q-item-label>Google Map</q-item-label>
                   <q-item-label caption>With User location</q-item-label>
+                </q-item-section>
+              </q-item>
+            <q-item dense clickable class="app-menu-item" to="/geospatial/interactivechoropleth">
+                <q-item-section avatar></q-item-section>
+                <q-item-section>
+                  <q-item-label>Interactive Choropleth</q-item-label>
+                  <q-item-label caption>World map</q-item-label>
                 </q-item-section>
               </q-item>
         </q-expansion-item>
