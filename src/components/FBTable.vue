@@ -106,4 +106,23 @@ export default {
 .table {
   background-color: #f2f0eb;
 }
+
+.q-table__bottom-item {
+  margin-right: 50px;
+}
+
+.q-field__control-container {
+  margin-left: 30px;
+  padding-left:10px;
+  padding-right: 0px;
+}
+
+.q-select__dropdown-icon {
+  padding:10px;
+}
+
+.q-field__inner {
+  padding-left: 0px;
+  padding-right:0px;
+}
 </style>

@@ -2,31 +2,9 @@
     <div class="col">
       <div class="row">
 
-        <div class="q-pa-lg bg-grey-10 text-white">
-          <q-input
-          class="search-box"
-          filled
-          dark
-          v-model="searchList"
-          label="Page Name"
-          />
-          <q-list
-          v-if="showList"
-          class="list-area"
-          dark
-          separator style="width: 320px">
-            <q-scroll-area style="height: 430px; max-width: 300px;">
-              <q-item
-                v-for="(name, index) in filteredList"
-                :key="index"
-                clickable
-                v-ripple
-                @click="clickedList(name)">
-                  <q-item-section>{{ name }}</q-item-section>
-                </q-item>
-            </q-scroll-area>
-          </q-list>
-        </div>
+        <FBList
+        :distinctNames="distinctNames">
+        </FBList>
 
         <div class="col">
           <h2>{{ clickedName }}</h2>
@@ -38,13 +16,19 @@
               label="Reset All"
               @click="defaultChart()"/>
               <br/>
-              <q-btn
+            <q-btn
               class="btn"
               v-show="showBtn"
               color="white"
               text-color="black"
               label="Remove Highest"
               @click="removeData()"/>
+            <q-btn
+              class="btn"
+              color="white"
+              text-color="black"
+              label="Filter By Range"
+              @click="$router.push('/charts/fbcategoryrange')"/>
           </div>
             <LineChart
               :chart-data="chartdata"
@@ -63,19 +47,19 @@
 <script>
 import * as d3 from 'd3'
 import FBTable from 'src/components/FBTable'
+import FBList from 'src/components/FBList'
 import LineChart from 'src/components/FBChart'
 import moment from 'moment'
 
 export default {
   components: {
     FBTable,
+    FBList,
     LineChart
   },
   data () {
     return {
       pagesURL: 'http://127.0.0.1:5500/src/data/fbdata.csv',
-      searchList: '',
-      showList: true,
       showBtn: true,
       pageNames: [],
       pageDetails: [],
@@ -253,13 +237,6 @@ export default {
       }
     }
   },
-  computed: {
-    filteredList () {
-      return this.distinctNames.filter(post => {
-        return post.toLowerCase().includes(this.searchList.toLowerCase())
-      })
-    }
-  },
   async mounted () {
     await this.getData()
     this.defaultChart()
@@ -275,10 +252,6 @@ h1,h2,p {
 
 .btn {
   margin: 10px;
-}
-
-.search-box {
-  margin-bottom: 20px;
 }
 
 .q-field__control-container {

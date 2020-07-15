@@ -22,7 +22,8 @@ const routes = [
       { path: '/geospatial/googlemap', name: 'GoogleMap', component: () => import('pages/geospatial/GoogleMap.vue') },
       { path: '/charts/scatterplot', name: 'Scatterplot', component: () => import('pages/charts/ScatterplotMenu.vue') },
       { path: '/geospatial/interactivechoropleth', name: 'InteractiveChoropleth', component: () => import('pages/geospatial/InteractiveChoropleth.vue') },
-      { path: '/charts/sortablebar', name: 'SortableBar', component: () => import('pages/charts/SortableBar.vue') }
+      { path: '/charts/sortablebar', name: 'SortableBar', component: () => import('pages/charts/SortableBar.vue') },
+      { path: '/charts/fbcategoryrange', name: 'FBCategoryRange', component: () => import('components/FBCategoryRange.vue') }
     ]
   }
 ]
