@@ -23,7 +23,8 @@ const routes = [
       { path: '/charts/scatterplot', name: 'Scatterplot', component: () => import('pages/charts/ScatterplotMenu.vue') },
       { path: '/geospatial/interactivechoropleth', name: 'InteractiveChoropleth', component: () => import('pages/geospatial/InteractiveChoropleth.vue') },
       { path: '/charts/sortablebar', name: 'SortableBar', component: () => import('pages/charts/SortableBar.vue') },
-      { path: '/charts/fbcategoryrange', name: 'FBCategoryRange', component: () => import('components/FBCategoryRange.vue') }
+      { path: '/components/fbcategoryrange', name: 'FBCategoryRange', component: () => import('components/FBCategoryRange.vue') },
+      { path: '/components/loadcsv', name: 'LoadCSV', component: () => import('components/LoadCSV.vue') }
     ]
   }
 ]

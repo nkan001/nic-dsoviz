@@ -28,7 +28,7 @@
               color="white"
               text-color="black"
               label="Filter By Range"
-              @click="$router.push('/charts/fbcategoryrange')"/>
+              @click="$router.push('/components/fbcategoryrange')"/>
           </div>
             <LineChart
               :chart-data="chartdata"
@@ -39,7 +39,8 @@
       <br/>
       <FBTable
         :data="pageDetails"
-        :toSearch="clickedName">
+        :toSearch="clickedName"
+        :columns="columns">
       </FBTable>
     </div>
 </template>
@@ -72,7 +73,45 @@ export default {
       options: {
         responsive: true,
         maintainAspectRatio: false
-      }
+      },
+      columns: [
+        {
+          name: 'Ad Date',
+          align: 'center',
+          label: 'Date',
+          field: 'date'
+        },
+        {
+          name: 'Page Name',
+          label: 'Page Name',
+          field: 'name'
+        },
+        {
+          name: 'Alias',
+          label: 'Alias',
+          field: 'alias'
+        },
+        {
+          name: 'Likes',
+          label: 'Likes',
+          field: 'likes'
+        },
+        {
+          name: 'Category',
+          label: 'Category',
+          field: 'category'
+        },
+        {
+          name: 'Insta Username',
+          label: 'Username',
+          field: 'username'
+        },
+        {
+          name: 'Insta Followers',
+          label: 'Followers',
+          field: 'followers'
+        }
+      ]
     }
   },
   methods: {

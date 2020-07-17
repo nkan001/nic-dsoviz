@@ -32,51 +32,14 @@ export default {
   name: 'FBTable',
   props: {
     data: Array,
-    toSearch: String
+    toSearch: String,
+    columns: Array
   },
   data () {
     return {
       loading: false,
       filter: '',
-      rowCount: 10,
-      columns: [
-        {
-          name: 'Ad Date',
-          align: 'center',
-          label: 'Date',
-          field: 'date'
-        },
-        {
-          name: 'Page Name',
-          label: 'Page Name',
-          field: 'name'
-        },
-        {
-          name: 'Alias',
-          label: 'Alias',
-          field: 'alias'
-        },
-        {
-          name: 'Likes',
-          label: 'Likes',
-          field: 'likes'
-        },
-        {
-          name: 'Category',
-          label: 'Category',
-          field: 'category'
-        },
-        {
-          name: 'Insta Username',
-          label: 'Username',
-          field: 'username'
-        },
-        {
-          name: 'Insta Followers',
-          label: 'Followers',
-          field: 'followers'
-        }
-      ]
+      rowCount: 10
     }
   },
   methods: {
