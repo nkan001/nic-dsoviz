@@ -6,9 +6,9 @@
       :access-token="accessToken"
       :map-options="options"
       @map-load="loaded"
-      @map-click:points="clicked"
-      @map-mouseenter:points="mouseEntered"
-      @map-mouseleave:points="mouseLeft"
+      @map-click:points="clicked()"
+      @map-mouseenter:points="mouseEntered()"
+      @map-mouseleave:points="mouseLeft()"
     />
     </div>
   </q-page>
@@ -5323,23 +5323,23 @@ export default {
           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360
         }
 
-        let description = e.features[0].properties.description
+        // let description = e.features[0].properties.description
 
         new mapboxgl.Popup({
           closeButton: false,
           closeOnClick: false,
           maxWidth: '400px'
         }).setLngLat(coordinates)
-          .setHTML(description)
+          .setHTML('<div id="vue-popup-content"></div>')
           .addTo(map)
 
         new PopupContent({
-          propsData: { feature: e.features[0] }
+          propsData: { feature: e.features[0].properties.description }
         }).$mount('#vue-popup-content')
       }
     },
     mouseEntered (map) {
-      map.getCanvas().style.cursor = ''
+      map.getCanvas().style.cursor = 'pointer'
     },
     mouseLeft (map) {
       map.getCanvas().style.cursor = ''
