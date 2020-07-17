@@ -1,6 +1,9 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 
+// For the SG Parks part
+const webpack = require('webpack')
+
 module.exports = function (ctx) {
   return {
     // app boot file (/src/boot)
@@ -73,6 +76,8 @@ module.exports = function (ctx) {
             formatter: require('eslint').CLIEngine.getFormatter('stylish')
           }
         })
+        // For the SG parks part
+        cfg.plugins.push( new webpack.ProvidePlugin({ mapboxgl: "mapbox-gl" }) );
       }
     },
 
