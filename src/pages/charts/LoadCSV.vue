@@ -51,22 +51,29 @@
             </template>
             </q-table>
 
-            <p v-if="parseCsv.length != 0">
-              {{ this.getHeadings() }}
-            </p>
-
-            <!-- <p>
-                {{ this.parseCsv[0].Column1 }}
-                {{ this.parseCsv[0].Column2 }}
-                {{ this.parseCsv[0].Column3 }}
-            </p> -->
+            <br/>
+            <h1 v-if="parseCsv.length != 0">
+              {{ getHeadings() }}
+              Plot a graph
+              {{ toggleAxis() }}
+            </h1>
+            <p
+            class="choose-axis"
+            v-if="parseCsv.length != 0"> Choose Axes </p>
 
             // Dummy section. Just using it to get the FBTable component styles. Doesn't render
             <FBTable
             :data="parseCsv"
             toSearch=""
-            :columns="columns" >
+            :columns="columns">
             </FBTable>
+
+            <div v-show="showAxis">
+              <CustomGraph
+              :list="headings"
+              :data="parseCsv"
+              />
+            </div>
         </div>
     </q-page>
 </template>
@@ -74,17 +81,20 @@
 <script>
 import { VueCsvImport } from 'vue-csv-import'
 import { FBTable } from 'src/components/FBTable'
+import CustomGraph from 'src/components/CustomGraph'
 
 export default {
   name: 'LoadCSV',
   components: {
     VueCsvImport,
-    FBTable
+    FBTable,
+    CustomGraph
   },
   data () {
     return {
       componentKey: 0,
       check: 0,
+      showAxis: false,
       colArray: [],
       headings: [],
       number: 1,
@@ -133,6 +143,9 @@ export default {
     },
     setCheck () {
       this.check = 0
+    },
+    toggleAxis () {
+      this.showAxis = true
     }
   },
   mounted () {
@@ -161,4 +174,9 @@ h1,p {
 .refresh-btn {
   margin: 10px;
 }
+
+.choose-axis {
+  margin-bottom: 0px;
+}
+
 </style>
