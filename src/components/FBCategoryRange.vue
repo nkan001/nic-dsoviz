@@ -194,8 +194,6 @@ export default {
     this.getLikes()
     this.getFollowers()
     this.creatingObj()
-    this.splittingLikes()
-    this.splittingFollowers()
   }
 
 }
