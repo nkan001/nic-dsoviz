@@ -55,7 +55,6 @@
             <h1 v-if="parseCsv.length != 0">
               {{ getHeadings() }}
               Plot a graph
-              {{ toggleAxis() }}
             </h1>
             <p
             class="choose-axis"
@@ -68,7 +67,7 @@
             :columns="columns">
             </FBTable>
 
-            <div v-show="showAxis">
+            <div v-show="parseCsv.length != 0">
               <CustomGraph
               :list="headings"
               :data="parseCsv"

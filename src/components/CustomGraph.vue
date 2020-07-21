@@ -1,20 +1,68 @@
 <template>
   <div class="col">
       <div class="q-gutter-md">
-        <q-select dark outlined v-model="y" :options="list" label="Y Axis" />
-        <q-select dark outlined v-model="x" :options="list" label="X Axis" />
+        <q-select dark outlined
+        v-model="y"
+        :options="list"
+        label="Y Axis" />
+        <q-select dark outlined
+        v-model="x"
+        :options="list"
+        label="X Axis" />
       </div>
-       <q-btn
+
+      <div class="row">
+        <q-btn
           class="refresh-btn"
           color="white"
           text-color="black"
           label="Plot"
-          @click="getNo(); getData(); getChart();"
+          @click="getNo(); getData(); getChart(); toggleBoundaries();"
           />
+        <br>/
+        <q-btn
+          v-show="!seamless"
+          class="btn"
+          color="white"
+          text-color="black"
+          label="Filter By Y Range"
+          @click="boundaries = true; setBoundaries();"/>
+
+          <div class="set row" v-show="boundaries">
+              <q-input class="boundaries" dark filled label="Lower bound"
+              v-model="lo"
+              v-on:change="setBoundaries()"/>
+              <q-input class="boundaries" dark filled label="Upper bound"
+              v-model="up"
+              v-on:change="setBoundaries()"/>
+          </div>
+      </div>
+
       <LineChart
       :chart-data="chartdata"
       :options="options"
       />
+
+      <!-- The pop up  -->
+      <div
+      v-show="seamless == false"
+      class="q-pa-md q-gutter-sm">
+        <q-dialog v-model="seamless" seamless position="bottom">
+          <q-card style="width: 450px">
+
+            <q-card-section class="row items-center no-wrap">
+              <div>
+                <div class=" error text-weight-bold">Error</div>
+                <div class="des text-grey">Y values are not numerical data</div>
+              </div>
+
+              <q-space />
+
+              <q-btn flat round icon="close" v-close-popup />
+            </q-card-section>
+          </q-card>
+        </q-dialog>
+      </div>
   </div>
 </template>
 
@@ -35,6 +83,10 @@ export default {
       y: null,
       x: null,
       no: 0,
+      seamless: false,
+      boundaries: false,
+      lo: 0,
+      up: 1000,
       dataObj: [],
       chartdata: {},
       options: {
@@ -46,6 +98,9 @@ export default {
   methods: {
     getNo () {
       this.no = this.list.length
+    },
+    toggleBoundaries () {
+      this.boundaries = false
     },
     getData () {
       let dataObj = []
@@ -76,17 +131,51 @@ export default {
       this.dataObj = dataObj
     },
     getChart () {
-      console.log(this.getX)
-      console.log(this.getY)
+      if (!isNaN(this.getY[0])) {
+        this.seamless = false
+        this.chartdata = {
+          labels: this.getX,
+          datasets: [
+            {
+              label: this.y,
+              backgroundColor: '#f87979',
+              borderColor: '#f87979',
+              fill: false,
+              data: this.getY
+            }
+          ]
+        }
+      } else {
+        this.seamless = true
+      }
+    },
+    setBoundaries () {
+      let yData = this.getY
+      let filteredY = []
+      let indices = []
+      yData.forEach((d, i) => {
+        d = parseInt(d)
+        if (d >= this.lo && d <= this.up) {
+          filteredY.push(d)
+          indices.push(i)
+        }
+      })
+      let xData = this.getX
+      let filteredX = []
+      xData.forEach((d, i) => {
+        if (indices.includes(i)) {
+          filteredX.push(d)
+        }
+      })
       this.chartdata = {
-        labels: this.getX,
+        labels: filteredX,
         datasets: [
           {
             label: this.y,
             backgroundColor: '#f87979',
             borderColor: '#f87979',
             fill: false,
-            data: this.getY
+            data: filteredY
           }
         ]
       }
@@ -114,5 +203,21 @@ h1, p {
 
 .q-gutter-md {
     margin: 20px 20px 20px 15px;
+}
+
+.error, .des {
+  margin-left: 20px;
+}
+
+.btn {
+  margin-left: 10px;
+}
+
+.set {
+  margin-left: 20px;
+}
+
+.boundaries {
+    margin-left: 25px;
 }
 </style>
