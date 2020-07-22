@@ -13,7 +13,7 @@
 
       <div class="row">
         <q-btn
-          class="refresh-btn"
+          class="plot-btn"
           color="white"
           text-color="black"
           label="Plot"
@@ -211,6 +211,13 @@ h1, p {
 
 .btn {
   margin-left: 10px;
+}
+
+.plot-btn {
+  margin-left: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left:20px;
 }
 
 .set {

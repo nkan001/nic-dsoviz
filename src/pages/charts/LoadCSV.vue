@@ -57,8 +57,10 @@
               Plot a graph
             </h1>
             <p
-            class="choose-axis"
-            v-if="parseCsv.length != 0"> Choose Axes </p>
+              v-if="parseCsv.length != 0"
+              class="note">
+              Y Axis should have <strong class="strong-word">numerical</strong> data
+            </p>
 
             // Dummy section. Just using it to get the FBTable component styles. Doesn't render
             <FBTable
@@ -172,10 +174,6 @@ h1,p {
 
 .refresh-btn {
   margin: 10px;
-}
-
-.choose-axis {
-  margin-bottom: 0px;
 }
 
 </style>

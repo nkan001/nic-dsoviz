@@ -18,13 +18,6 @@
               <br/>
             <q-btn
               class="btn"
-              v-show="showBtn"
-              color="white"
-              text-color="black"
-              label="Remove Highest"
-              @click="removeData()"/>
-            <q-btn
-              class="btn"
               color="white"
               text-color="black"
               label="Filter By Range"
