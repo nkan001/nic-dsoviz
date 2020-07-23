@@ -41,11 +41,11 @@
               <q-item-label caption>Symmetrical Pie Charts</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item clickable class="app-menu-item" to="/charts/line">
+          <q-item clickable class="app-menu-item" to="/charts/gradientline">
             <q-item-section avatar></q-item-section>
             <q-item-section>
-              <q-item-label>Line</q-item-label>
-              <q-item-label caption>Reactive Line Chart</q-item-label>
+              <q-item-label>Gradient Line</q-item-label>
+              <q-item-label caption>Reactive Line Chart w Gradient</q-item-label>
             </q-item-section>
           </q-item>
           <q-item dense clickable class="app-menu-item" to="/charts/bar">
@@ -55,35 +55,35 @@
               <q-item-label caption>Recative Bar chart</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item dense clickable class="app-menu-item" to="/charts/d3star">
+          <q-item dense clickable class="app-menu-item" to="/charts/d3/d3star">
             <q-item-section avatar></q-item-section>
             <q-item-section>
               <q-item-label>D3 Star</q-item-label>
               <q-item-label caption>Testing D3</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item dense clickable class="app-menu-item" to="/charts/d3bar">
+          <q-item dense clickable class="app-menu-item" to="/charts/d3/d3bar">
             <q-item-section avatar></q-item-section>
             <q-item-section>
               <q-item-label>D3 Bar</q-item-label>
               <q-item-label caption>Testing D3 Chart</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item dense clickable class="app-menu-item" to="/charts/d3area">
+          <q-item dense clickable class="app-menu-item" to="/charts/d3/d3area">
             <q-item-section avatar></q-item-section>
             <q-item-section>
               <q-item-label>D3 Area Chart</q-item-label>
               <q-item-label caption>Interactive D3 Area Chart</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item dense clickable class="app-menu-item" to="/charts/inputbubble">
+          <q-item dense clickable class="app-menu-item" to="/charts/d3/inputbubble">
             <q-item-section avatar></q-item-section>
             <q-item-section>
               <q-item-label>Bubbles</q-item-label>
               <q-item-label caption>Reactive Bubbles</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item dense clickable class="app-menu-item" to="/charts/scatterplot">
+          <q-item dense clickable class="app-menu-item" to="/charts/d3/scatterplot">
             <q-item-section avatar></q-item-section>
             <q-item-section>
               <q-item-label>Scatterplot</q-item-label>
@@ -104,11 +104,11 @@
               <q-item-label caption>Parsing & Table</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item dense clickable class="app-menu-item" to="/charts/sortablebar">
+          <q-item dense clickable class="app-menu-item" to="/charts/sgparks">
             <q-item-section avatar></q-item-section>
             <q-item-section>
-              <q-item-label>Sortable Bar Chart</q-item-label>
-              <q-item-label caption></q-item-label>
+              <q-item-label>Parks in Singapore</q-item-label>
+              <q-item-label caption>MapboxGL</q-item-label>
             </q-item-section>
           </q-item>
         </q-expansion-item>

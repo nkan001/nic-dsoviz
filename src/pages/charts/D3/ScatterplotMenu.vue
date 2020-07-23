@@ -1,10 +1,10 @@
 <template>
   <q-page class="flex flex-center">
-    <svg :width=width :height=height></svg>
-    <div id="menus">
-        Choose the y-axis: <span id="y-menu"></span>
-        Choose the x-axis: <span id="x-menu"></span>
-    </div>
+      <svg :width=width :height=height></svg>
+      <div id="menus">
+          Choose the y-axis: <span id="y-menu"></span>
+          Choose the x-axis: <span id="x-menu"></span>
+      </div>
   </q-page>
 </template>
 
@@ -234,6 +234,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+p
+  color: white
 #menus
   width: 100%
   font-size: 1.4em

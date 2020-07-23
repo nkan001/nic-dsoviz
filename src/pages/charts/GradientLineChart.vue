@@ -18,7 +18,7 @@
 import LineChart from '../../components/LineChart'
 
 export default {
-  name: 'Line',
+  name: 'GradientLine',
   components: { LineChart },
 
   data () {

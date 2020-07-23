@@ -11,14 +11,15 @@
         label="X Axis" />
       </div>
 
-      <div class="row">
-        <q-btn
+      <q-btn
           class="plot-btn"
           color="white"
           text-color="black"
           label="Plot"
           @click="getNo(); getData(); getChart(); toggleBoundaries();"
           />
+
+      <div class="row">
         <br>/
         <q-btn
           v-show="!seamless"
@@ -39,6 +40,11 @@
       </div>
 
       <LineChart
+      :chart-data="chartdata"
+      :options="options"
+      />
+
+      <BarChart
       :chart-data="chartdata"
       :options="options"
       />
@@ -68,6 +74,7 @@
 
 <script>
 import LineChart from 'src/components/FBChart'
+import BarChart from 'src/components/BarChart'
 
 export default {
   name: 'CustomGraph',
@@ -76,7 +83,8 @@ export default {
     data: Array
   },
   components: {
-    LineChart
+    LineChart,
+    BarChart
   },
   data () {
     return {
@@ -91,7 +99,29 @@ export default {
       chartdata: {},
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        legend: {
+          labels: {
+            fontColor: 'white'
+          }
+        },
+        title: {
+          display: true,
+          fontColor: 'white',
+          text: 'Custom Chart Title'
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              fontColor: 'white'
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: 'white'
+            }
+          }]
+        }
       }
     }
   },
@@ -210,14 +240,14 @@ h1, p {
 }
 
 .btn {
-  margin-left: 10px;
+  margin-left: 0px;
 }
 
 .plot-btn {
-  margin-left: 5px;
+  margin-left: -10px;
   margin-top: 10px;
   margin-bottom: 10px;
-  padding-left:20px;
+  padding-left:40px;
 }
 
 .set {

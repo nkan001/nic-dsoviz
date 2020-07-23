@@ -65,7 +65,29 @@ export default {
       chartdata: {},
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        legend: {
+          labels: {
+            fontColor: 'white'
+          }
+        },
+        title: {
+          display: true,
+          fontColor: 'white',
+          text: 'Custom Chart Title'
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              fontColor: 'white'
+            }
+          }],
+          xAxes: [{
+            ticks: {
+              fontColor: 'white'
+            }
+          }]
+        }
       },
       columns: [
         {

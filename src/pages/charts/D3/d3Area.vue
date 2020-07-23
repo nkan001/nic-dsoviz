@@ -2,6 +2,7 @@
   <q-page>
     <div id="app">
       <h1>Area Chart</h1>
+      <p>Wait a while for it to load</p>
       <responsive-area-chart
         @select="onSelect"
         :data="data"
@@ -69,7 +70,7 @@ body
 </style>
 
 <style lang="sass" scoped>
-h1, h3
+h1, h3, p
     color: white
 
 h1, .content
