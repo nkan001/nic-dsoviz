@@ -1,3 +1,5 @@
+// Using D3.js to plot interactive Choropleth map
+
 <template>
   <q-page class="flex flex-center">
     <div id="container">

@@ -1,13 +1,17 @@
 <template>
     <q-page class="flex flex-center">
+      <!-- Back button -->
         <q-btn
               class="absolute-top-left btn"
               color="white"
               text-color="black"
               label="Go back"
               @click="$router.push('/charts/fbdashboard')"/>
+
         <div class="col">
             <h1>Categories by Range: </h1>
+
+<!-- Filter by likes -->
             <h2> Likes </h2>
             <div class="row">
                 <q-input class="boundaries" dark filled label="Lower bound" v-model="lo"/>
@@ -18,7 +22,7 @@
             :height="height"
             :chart-data="splittingLikes"
             :options="options"/>
-
+<!-- Filter by followers -->
             <h2> Followers </h2>
             <div class="row">
                 <q-input class="boundaries" dark filled label="Lower bound" v-model="lo2"/>
@@ -65,6 +69,7 @@ export default {
     }
   },
   methods: {
+    // Waitng for local CSV data to load
     async getData () {
       const pagesData = await d3.csv(this.pagesURL, d3.autoType)
       let categories = []
@@ -75,6 +80,7 @@ export default {
       this.distinctCategories = [...new Set(categories)]
       this.distinctCategories.sort()
     },
+    // get the array of likes according to distinctCategories
     getLikes () {
       let categoryLikes = []
       for (let j = 0; j < this.distinctCategories.length; j++) {
@@ -89,6 +95,7 @@ export default {
       })
       this.likes = categoryLikes
     },
+    // get the array of followers according to distinctCategories
     getFollowers () {
       let categoryFollowers = []
       for (let j = 0; j < this.distinctCategories.length; j++) {
@@ -103,6 +110,7 @@ export default {
       })
       this.followers = categoryFollowers
     },
+    // Object that has data of distinctCategories, likes, followers
     creatingObj () {
       let objs = []
       let one
@@ -160,6 +168,7 @@ export default {
     }
   },
   computed: {
+    // Filtering when user input of lower and upper bounds change for likes
     splittingLikes () {
       let c = []
       let l = []
@@ -174,6 +183,7 @@ export default {
       this.likesChartData(c, l, f)
       return this.chartdata
     },
+    // Filtering when user input of lower and upper bounds change for followers
     splittingFollowers () {
       let c = []
       let l = []

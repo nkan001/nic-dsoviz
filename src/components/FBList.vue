@@ -1,4 +1,5 @@
 <template>
+<!-- Scrollable list -->
     <div class="q-pa-lg bg-grey-10 text-white">
           <q-input
           class="search-box"
@@ -39,6 +40,7 @@ export default {
     }
   },
   computed: {
+    // Filtering thru list as user types input
     filteredList () {
       return this.distinctNames.filter(post => {
         return post.toLowerCase().includes(this.searchList.toLowerCase())

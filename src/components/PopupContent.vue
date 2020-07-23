@@ -1,3 +1,5 @@
+// For geospatial/SGParks.vue
+
 <template>
   <div>
     <h3>{{ feature.properties.title }}</h3>

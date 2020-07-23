@@ -1,3 +1,5 @@
+// For the interactive World Map, ie charts/geospatial/InteractiveChoropleth
+
 export const colorLegend = (selection, props) => {
   const {
     colorScale,

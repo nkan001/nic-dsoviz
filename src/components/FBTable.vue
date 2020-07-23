@@ -1,3 +1,5 @@
+// For charts/FBDashboard.vue
+
 <template>
     <div class="q-pa-md">
     <q-table
@@ -9,6 +11,7 @@
       :filter="filter"
       :loading="loading"
       >
+      <!-- resets to default dataset (instead of filtering by searched result)  -->
         <template v-slot:top>
           <div class="q-pa-sm">
             <q-btn
@@ -19,6 +22,7 @@
               @click="reset()"/>
           </div>
           <q-space />
+      <!-- filters thru the results, based on clicked result in FBDashboard.vue -->
           <q-input borderless dense debounce="500" color="primary" v-model="filtering">
           </q-input>
         </template>

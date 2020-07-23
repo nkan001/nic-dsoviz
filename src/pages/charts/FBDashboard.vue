@@ -2,6 +2,7 @@
     <div class="col">
       <div class="row">
 
+        <!-- Scrollable list -->
         <FBList
         :distinctNames="distinctNames">
         </FBList>
@@ -16,6 +17,7 @@
               label="Reset All"
               @click="defaultChart()"/>
               <br/>
+  <!-- Goes to the page of filtering by range -->
             <q-btn
               class="btn"
               color="white"
@@ -138,6 +140,7 @@ export default {
       this.showBtn = false
       this.getChartData()
     },
+    // Default chart aggregates the different category likes and followers
     defaultChart () {
       this.showBtn = true
       this.clickedName = ''

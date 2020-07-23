@@ -26,7 +26,6 @@ export default {
       datacollection: null,
       gradient1: null,
       gradient2: null,
-      // Chart.js options that controls the appearance of the chart
       options: {
         scales: {
           yAxes: [{

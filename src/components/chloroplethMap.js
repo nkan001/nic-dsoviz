@@ -1,3 +1,5 @@
+// For the interactive World Map, ie charts/geospatial/InteractiveChoropleth
+
 import { geoPath, geoNaturalEarth1 } from 'd3-geo'
 import { zoom } from 'd3-zoom'
 import { event } from 'd3-selection'

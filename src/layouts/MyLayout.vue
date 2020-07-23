@@ -104,13 +104,6 @@
               <q-item-label caption>Parsing & Table</q-item-label>
             </q-item-section>
           </q-item>
-          <q-item dense clickable class="app-menu-item" to="/charts/sgparks">
-            <q-item-section avatar></q-item-section>
-            <q-item-section>
-              <q-item-label>Parks in Singapore</q-item-label>
-              <q-item-label caption>MapboxGL</q-item-label>
-            </q-item-section>
-          </q-item>
         </q-expansion-item>
         <q-expansion-item
           expand-separator
@@ -164,6 +157,13 @@
                   <q-item-label caption>World map</q-item-label>
                 </q-item-section>
               </q-item>
+            <q-item dense clickable class="app-menu-item" to="/geospatial/sgparks">
+            <q-item-section avatar></q-item-section>
+              <q-item-section>
+                <q-item-label>Parks in Singapore</q-item-label>
+                <q-item-label caption>MapboxGL</q-item-label>
+              </q-item-section>
+            </q-item>
         </q-expansion-item>
       </q-list>
     </q-drawer>

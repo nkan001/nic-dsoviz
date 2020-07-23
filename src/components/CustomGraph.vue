@@ -1,5 +1,8 @@
+// For charts/LoadCSV.vue
+
 <template>
   <div class="col">
+    <!-- Choosing inputs for axes -->
       <div class="q-gutter-md">
         <q-select dark outlined
         v-model="y"
@@ -10,7 +13,7 @@
         :options="list"
         label="X Axis" />
       </div>
-
+<!-- Plotting the graph after axes have been chosen -->
       <q-btn
           class="plot-btn"
           color="white"
@@ -18,7 +21,7 @@
           label="Plot"
           @click="getNo(); getData(); getChart(); toggleBoundaries();"
           />
-
+<!-- Showing a pop-up that an error occured if y axis non-numerical -->
       <div class="row">
         <br>/
         <q-btn
@@ -28,7 +31,7 @@
           text-color="black"
           label="Filter By Y Range"
           @click="boundaries = true; setBoundaries();"/>
-
+<!-- When "Filter by Y range" button is clicked, will allow input for lower and upper bound -->
           <div class="set row" v-show="boundaries">
               <q-input class="boundaries" dark filled label="Lower bound"
               v-model="lo"
@@ -129,9 +132,11 @@ export default {
     getNo () {
       this.no = this.list.length
     },
+    // When want to filter by Y range
     toggleBoundaries () {
       this.boundaries = false
     },
+    // re-arranging data object from parseCsv (from LoadCSV.vue)
     getData () {
       let dataObj = []
       this.list.forEach(d => {
@@ -160,6 +165,7 @@ export default {
       })
       this.dataObj = dataObj
     },
+    // if y values are numerical, plot the chart. If not, show error in pop-up
     getChart () {
       if (!isNaN(this.getY[0])) {
         this.seamless = false
@@ -179,6 +185,7 @@ export default {
         this.seamless = true
       }
     },
+    // change graph when lower and upper bounds change with user input
     setBoundaries () {
       let yData = this.getY
       let filteredY = []

@@ -5,6 +5,7 @@
           <p class="note">
             Add columns <strong class="strong-word">before</strong> loading in the CSV file
           </p>
+           <!-- The npm package -->
             <VueCsvImport
             :key="componentKey"
             class="csvImport"
@@ -26,7 +27,7 @@
                 <button @click.prevent="load">Load CSV</button>
             </template>
             </VueCsvImport>
-
+<!-- Renders table based on columns chosen -->
             <q-table
             class="table"
             title="FBData Table"
@@ -62,6 +63,13 @@
               Y Axis should have <strong class="strong-word">numerical</strong> data
             </p>
 
+             <div v-show="parseCsv.length != 0">
+              <CustomGraph
+              :list="headings"
+              :data="parseCsv"
+              />
+            </div>
+
             // Dummy section. Just using it to get the FBTable component styles. Doesn't render
             <FBTable
             :data="parseCsv"
@@ -69,12 +77,6 @@
             :columns="columns">
             </FBTable>
 
-            <div v-show="parseCsv.length != 0">
-              <CustomGraph
-              :list="headings"
-              :data="parseCsv"
-              />
-            </div>
         </div>
     </q-page>
 </template>
@@ -126,9 +128,12 @@ export default {
         this.number += 1
         this.columns.push(one)
       }
+      // Component key so that the VueCsvImport component re-renders
       this.componentKey += 1
     },
+    // Get array of headings chosen by user
     getHeadings () {
+      // So that it doesn't keep re-rendering and cause an infinite loop
       if (this.check === 0) {
         let tempObj = this.parseCsv[0]
         let headings = Object.values(tempObj)
@@ -142,9 +147,11 @@ export default {
         this.check += 1
       }
     },
+    // When there's data in parseCSV (after user chooses all columns), set check = 0
     setCheck () {
       this.check = 0
     },
+    // Show axes only after user chose columns
     toggleAxis () {
       this.showAxis = true
     }

@@ -1,3 +1,5 @@
+// Doesn't work because I didn;t pay for the Google API billing
+
 <template lang="html">
   <q-page class="flex flex-center">
     <div class="title col">
