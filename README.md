@@ -13,7 +13,8 @@ A fast, modern, reactive visualisation toolkit. The DSOViz Toolkit puts together
 To get started follow the following steps to get a hot-reloading development server up and running. 
 There's a [guide](docs/setup_dev_environment.md) to setup the pre-getting-started development environment required if you're lost at this stage
 ```
-Set up the Live Server for some datasets to be able to load.
+Before running quasar dev, set up a Live Server for some datasets to be able to load.
+eg live server: http://127.0.0.1:5500
 
 ### Install the dependencies
 ```bash

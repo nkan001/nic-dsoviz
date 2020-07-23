@@ -1,7 +1,7 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 
-// For the SG Parks part
+// For the SG Parks Mapboxgl part
 const webpack = require('webpack')
 
 module.exports = function (ctx) {
