@@ -11,12 +11,9 @@ A fast, modern, reactive visualisation toolkit. The DSOViz Toolkit puts together
 ## Getting Started
 
 To get started follow the following steps to get a hot-reloading development server up and running. 
-There's a [guide](docs/setup_dev_environment.md) to setup the pre-getting-started development environment required if you're lost at this stage.
-
-### Check out the code
-```bash
-git clone https://github.com/nkan001/nic-dsoviz.git
+There's a [guide](docs/setup_dev_environment.md) to setup the pre-getting-started development environment required if you're lost at this stage
 ```
+Set up the Live Server for some datasets to be able to load.
 
 ### Install the dependencies
 ```bash
@@ -37,4 +34,4 @@ npm run lint
 ```bash
 quasar build
 ```
->>>>>>> first commit
+
