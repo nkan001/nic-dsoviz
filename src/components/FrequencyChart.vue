@@ -1,61 +1,60 @@
 <template>
 
 <q-card dark bordered class="bg-grey-9 my-card">
-    <q-card-section>
-    <h1>Frequency Chart</h1>
-    <div class="text-subtitle2"><strong class="strong-word">Labels</strong>: unique category to count</div>
-    <div class="text-subtitle2"><strong class="strong-word">Frequency</strong>: aggregated labels</div>
-    </q-card-section>
+      <q-card-section>
+         <h1>Frequency Plot</h1>
+        <p><strong class="strong-word">Labels</strong>: unique category to count</p>
+        <p><strong class="strong-word">Frequency</strong>: aggregated labels</p>
+      </q-card-section>
 
-    <q-separator dark inset />
+      <q-separator dark inset />
 
-    <q-card-section>
-    <div class="col">
-    <!-- Choosing inputs for axes -->
-      <div class="q-gutter-md">
-          <q-select dark outlined
-        v-model="x"
-        :options="list"
-        label="Labels" />
-        <q-select dark outlined
-        v-model="y"
-        :options="list"
-        label="Frequency" />
-      </div>
-      <div class="row">
-        <!-- Plotting the graph after axes have been chosen -->
-        <q-btn
-            class="plot-btn"
+      <q-card-section>
+        <div class="col">
+        <!-- Choosing inputs for axes -->
+        <div class="q-gutter-md">
+            <q-select dark outlined
+            v-model="y"
+            :options="list"
+            label="Frequency" />
+            <q-select dark outlined
+            v-model="x"
+            :options="list"
+            label="Labels" />
+        </div>
+        <div class="row">
+            <!-- Plotting the graph after axes have been chosen -->
+            <q-btn
+                class="plot-btn"
+                color="white"
+                text-color="black"
+                label="Plot"
+                @click="getNo(); getData(); setUnique(); getFrequency()"
+                />
+            <q-btn
+            class="btn"
             color="white"
             text-color="black"
-            label="Plot"
-            @click="getNo(); getData(); setUnique(); getFrequency()"
+            label="Filter By Y Range"
+            @click="boundaries = true; setBoundaries();"/>
+    <!-- When "Filter by Y range" button is clicked, will allow input for lower and upper bound -->
+            <div class="set row" v-show="boundaries">
+                <q-input class="boundaries" dark filled label="Lower bound"
+                v-model="lo"
+                v-on:change="setBoundaries()"/>
+                <q-input class="boundaries" dark filled label="Upper bound"
+                v-model="up"
+                v-on:change="setBoundaries()"/>
+            </div>
+        </div>
+
+            <BarChart
+            :chart-data="chartdata"
+            :options="options"
             />
-          <q-btn
-          class="btn"
-          color="white"
-          text-color="black"
-          label="Filter By Y Range"
-          @click="boundaries = true; setBoundaries();"/>
-<!-- When "Filter by Y range" button is clicked, will allow input for lower and upper bound -->
-          <div class="set row" v-show="boundaries">
-              <q-input class="boundaries" dark filled label="Lower bound"
-              v-model="lo"
-              v-on:change="setBoundaries()"/>
-              <q-input class="boundaries" dark filled label="Upper bound"
-              v-model="up"
-              v-on:change="setBoundaries()"/>
-          </div>
-      </div>
-
-        <BarChart
-        :chart-data="chartdata"
-        :options="options"
-        />
-      </div>
-    </q-card-section>
-</q-card>
-
+        </div>
+      </q-card-section>
+    </q-card>
 </template>
 
 <script>
@@ -228,7 +227,7 @@ export default {
 </script>
 
 <style>
-h1 {
+h1, p {
     color: white;
 }
 
@@ -258,9 +257,5 @@ h1 {
 
 .boundaries {
     margin-left: 25px;
-}
-
-.my-card {
-    margin-top: 20px;
 }
 </style>

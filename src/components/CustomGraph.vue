@@ -1,87 +1,89 @@
 // For charts/LoadCSV.vue
 
 <template>
+
 <q-card dark bordered class="bg-grey-9 my-card">
-    <q-card-section>
-      <div class="text-h6">Plot Numerical data</div>
-      <div class="text-subtitle2">Y must be <strong class="strong-word">numerical</strong></div>
-    </q-card-section>
+      <q-card-section>
+        <h1>Numerical Plot</h1>
+        <p>Y must be <strong class="strong-word">numerical</strong></p>
+      </q-card-section>
 
-    <q-separator dark inset />
+      <q-separator dark inset />
 
-    <q-card-section>
-      <div class="col">
-      <!-- Choosing inputs for axes -->
-        <div class="q-gutter-md">
-          <q-select dark outlined
-          v-model="y"
-          :options="list"
-          label="Y Axis" />
-          <q-select dark outlined
-          v-model="x"
-          :options="list"
-          label="X Axis" />
-        </div>
-      <!-- Plotting the graph after axes have been chosen -->
-      <div class="row">
-        <q-btn
-            class="plot-btn"
-            color="white"
-            text-color="black"
-            label="Plot"
-            @click="getNo(); getData(); getChart(); toggleBoundaries();"
-            />
-          <q-btn
-            v-show="!seamless"
-            class="btn"
-            color="white"
-            text-color="black"
-            label="Filter By Y Range"
-            @click="boundaries = true; setBoundaries();"/>
-  <!-- When "Filter by Y range" button is clicked, will allow input for lower and upper bound -->
-            <div class="set row" v-show="boundaries">
-                <q-input class="boundaries" dark filled label="Lower bound"
-                v-model="lo"
-                v-on:change="setBoundaries()"/>
-                <q-input class="boundaries" dark filled label="Upper bound"
-                v-model="up"
-                v-on:change="setBoundaries()"/>
+      <q-card-section>
+        <div class="col">
+          <!-- Choosing inputs for axes -->
+            <div class="q-gutter-md">
+              <q-select dark outlined
+              v-model="y"
+              :options="list"
+              label="Y Axis" />
+              <q-select dark outlined
+              v-model="x"
+              :options="list"
+              label="X Axis" />
             </div>
-      </div>
-
-        <LineChart
-        :chart-data="chartdata"
-        :options="options"
-        />
-
-        <BarChart
-        :chart-data="chartdata"
-        :options="options"
-        />
-
-        <!-- The pop up  -->
-        <div
-        v-show="seamless == false"
-        class="q-pa-md q-gutter-sm">
-          <q-dialog v-model="seamless" seamless position="bottom">
-            <q-card style="width: 450px">
-
-              <q-card-section class="row items-center no-wrap">
-                <div>
-                  <div class=" error text-weight-bold">Error</div>
-                  <div class="des text-grey">Y values are not numerical data</div>
+          <!-- Plotting the graph after axes have been chosen -->
+          <div class="row">
+            <q-btn
+                class="plot-btn"
+                color="white"
+                text-color="black"
+                label="Plot"
+                @click="getNo(); getData(); getChart(); toggleBoundaries();"
+                />
+              <q-btn
+                v-show="!seamless"
+                class="btn"
+                color="white"
+                text-color="black"
+                label="Filter By Y Range"
+                @click="boundaries = true; setBoundaries();"/>
+      <!-- When "Filter by Y range" button is clicked, will allow input for lower and upper bound -->
+                <div class="set row" v-show="boundaries">
+                    <q-input class="boundaries" dark filled label="Lower bound"
+                    v-model="lo"
+                    v-on:change="setBoundaries()"/>
+                    <q-input class="boundaries" dark filled label="Upper bound"
+                    v-model="up"
+                    v-on:change="setBoundaries()"/>
                 </div>
+          </div>
 
-                <q-space />
+            <LineChart
+            :chart-data="chartdata"
+            :options="options"
+            />
 
-                <q-btn flat round icon="close" v-close-popup />
-              </q-card-section>
-            </q-card>
-          </q-dialog>
+            <BarChart
+            :chart-data="chartdata"
+            :options="options"
+            />
+
+            <!-- The pop up  -->
+            <div
+            v-show="seamless == false"
+            class="q-pa-md q-gutter-sm">
+              <q-dialog v-model="seamless" seamless position="bottom">
+                <q-card style="width: 450px">
+
+                  <q-card-section class="row items-center no-wrap">
+                    <div>
+                      <div class=" error text-weight-bold">Error</div>
+                      <div class="des text-grey">Y values are not numerical data</div>
+                    </div>
+
+                    <q-space />
+
+                    <q-btn flat round icon="close" v-close-popup />
+                  </q-card-section>
+                </q-card>
+              </q-dialog>
+            </div>
         </div>
-    </div>
-    </q-card-section>
-  </q-card>
+      </q-card-section>
+    </q-card>
+
 </template>
 
 <script>

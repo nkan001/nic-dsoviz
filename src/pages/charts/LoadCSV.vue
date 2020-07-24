@@ -30,7 +30,6 @@
 <!-- Renders table based on columns chosen -->
             <q-table
             class="table"
-            title="FBData Table"
             :data="parseCsv"
             :columns="columns"
             row-key="id"
@@ -52,53 +51,51 @@
             </template>
             </q-table>
 
-            <br/>
             <h1 v-if="parseCsv.length != 0">
               {{ getHeadings() }}
             </h1>
-            <q-btn
-              color="white"
-              text-color="black"
-              label="Plot Graph"
-              @click="togglePlot()"
-              />
-            <q-btn
-              class="freq-btn"
-              color="white"
-              text-color="black"
-              label="Frequency Count"
-              @click="toggleCount()"
-              />
 
-             <div v-show="parseCsv.length != 0 && showPlot == true">
-              <CustomGraph
-              :list="headings"
-              :data="parseCsv"
-              />
+            <br/>
+            <div class="q-gutter-y-md">
+              <q-card>
+                <q-tabs
+                  v-model="tab"
+                  dense
+                  class="tabs bg-grey-9 text-white"
+                  active-color="teal"
+                  indicator-color="teal"
+                  align="justify"
+                  narrow-indicator
+                >
+                  <q-tab name="num" label="Numerical Plot"/>
+                  <q-tab name="freq" label="Frequency Plot" />
+                </q-tabs>
+
+                <q-separator />
+                <div v-show="parseCsv.length != 0 && tab == 'num'">
+                  <CustomGraph
+                    :list="headings"
+                    :data="parseCsv"
+                    />
+                </div>
+                  <div v-show="parseCsv.length != 0 && tab == 'freq'">
+                    <FrequencyChart
+                    :list="headings"
+                    :data="parseCsv"
+                    />
+                  </div>
+              </q-card>
             </div>
-
-            <!-- Showing Frequency Count -->
-            <div v-show="parseCsv.length != 0 && showCount == true">
-              <FrequencyChart
-              :list="headings"
-              :data="parseCsv"
-              />
-            </div>
-
-            <!-- Dummy section. Just using it to get the FBTable component styles. Doesn't render -->
-            <FBTable
-            :data="parseCsv"
-            toSearch=""
-            :columns="columns">
-            </FBTable>
-
         </div>
+        <FBTable
+        :list="headings"
+        :data="parseCsv"/>
     </q-page>
 </template>
 
 <script>
 import { VueCsvImport } from 'vue-csv-import'
-import { FBTable } from 'src/components/FBTable'
+import FBTable from 'src/components/FBTable'
 import CustomGraph from 'src/components/CustomGraph'
 import FrequencyChart from 'src/components/FrequencyChart'
 
@@ -112,11 +109,10 @@ export default {
   },
   data () {
     return {
+      tab: '',
       componentKey: 0,
       check: 0,
       showAxis: false,
-      showPlot: false,
-      showCount: false,
       colArray: [],
       headings: [],
       number: 1,
@@ -173,14 +169,6 @@ export default {
     // Show axes only after user chose columns
     toggleAxis () {
       this.showAxis = true
-    },
-    togglePlot () {
-      this.showPlot = true
-      this.showCount = false
-    },
-    toggleCount () {
-      this.showPlot = false
-      this.showCount = true
     }
   },
   mounted () {
@@ -211,8 +199,13 @@ h1,p {
   margin: 10px;
 }
 
-.freq-btn {
-  margin-left: 20px;
+.q-tabs {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.tabs {
+  padding-bottom: 5px;
 }
 
 </style>
