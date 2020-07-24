@@ -55,22 +55,37 @@
             <br/>
             <h1 v-if="parseCsv.length != 0">
               {{ getHeadings() }}
-              Plot a graph
             </h1>
-            <p
-              v-if="parseCsv.length != 0"
-              class="note">
-              Y Axis should have <strong class="strong-word">numerical</strong> data
-            </p>
+            <q-btn
+              color="white"
+              text-color="black"
+              label="Plot Graph"
+              @click="togglePlot()"
+              />
+            <q-btn
+              class="freq-btn"
+              color="white"
+              text-color="black"
+              label="Frequency Count"
+              @click="toggleCount()"
+              />
 
-             <div v-show="parseCsv.length != 0">
+             <div v-show="parseCsv.length != 0 && showPlot == true">
               <CustomGraph
               :list="headings"
               :data="parseCsv"
               />
             </div>
 
-            // Dummy section. Just using it to get the FBTable component styles. Doesn't render
+            <!-- Showing Frequency Count -->
+            <div v-show="parseCsv.length != 0 && showCount == true">
+              <FrequencyChart
+              :list="headings"
+              :data="parseCsv"
+              />
+            </div>
+
+            <!-- Dummy section. Just using it to get the FBTable component styles. Doesn't render -->
             <FBTable
             :data="parseCsv"
             toSearch=""
@@ -85,19 +100,23 @@
 import { VueCsvImport } from 'vue-csv-import'
 import { FBTable } from 'src/components/FBTable'
 import CustomGraph from 'src/components/CustomGraph'
+import FrequencyChart from 'src/components/FrequencyChart'
 
 export default {
   name: 'LoadCSV',
   components: {
     VueCsvImport,
     FBTable,
-    CustomGraph
+    CustomGraph,
+    FrequencyChart
   },
   data () {
     return {
       componentKey: 0,
       check: 0,
       showAxis: false,
+      showPlot: false,
+      showCount: false,
       colArray: [],
       headings: [],
       number: 1,
@@ -154,6 +173,14 @@ export default {
     // Show axes only after user chose columns
     toggleAxis () {
       this.showAxis = true
+    },
+    togglePlot () {
+      this.showPlot = true
+      this.showCount = false
+    },
+    toggleCount () {
+      this.showPlot = false
+      this.showCount = true
     }
   },
   mounted () {
@@ -167,12 +194,13 @@ h1,p {
     color: white
 }
 
+.title {
+  margin-top: 20px;
+}
+
 .note {
   color: white;
   font-size: 20px;
-}
-.strong-word {
-  color: teal;
 }
 
 .csvImport {
@@ -181,6 +209,10 @@ h1,p {
 
 .refresh-btn {
   margin: 10px;
+}
+
+.freq-btn {
+  margin-left: 20px;
 }
 
 </style>
