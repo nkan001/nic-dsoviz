@@ -5,7 +5,8 @@
           <p class="note">
             Add columns <strong class="strong-word">before</strong> loading in the CSV file
           </p>
-           <!-- The npm package -->
+          <div class="row">
+            <!-- The npm package -->
             <VueCsvImport
             :key="componentKey"
             class="csvImport"
@@ -46,10 +47,11 @@
                     @click="addCol()"
                     />
               <q-space />
-              <q-input outlined dense debounce="300" color="primary" v-model="filter">
+              <q-input outlined dense debounce="300" color="grey-9" v-model="filter">
               </q-input>
             </template>
             </q-table>
+          </div>
 
             <h1 v-if="parseCsv.length != 0">
               {{ getHeadings() }}
@@ -206,6 +208,14 @@ h1,p {
 
 .tabs {
   padding-bottom: 5px;
+}
+
+ /* for the data table */
+.table {
+  margin-left: 30px;
+  margin-top: 130px;
+  width: 900px;
+  padding: 20px;
 }
 
 </style>

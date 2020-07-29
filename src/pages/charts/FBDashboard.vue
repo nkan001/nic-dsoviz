@@ -135,6 +135,7 @@ export default {
     parseDate (date) {
       return moment(date, 'YYYYMMDD').format('Do MMM YY')
     },
+    // captures the pageName chosen by user
     clickedList (no) {
       this.clickedName = no
       this.showBtn = false
@@ -234,6 +235,7 @@ export default {
       })
       this.distinctNames.sort()
     },
+    // Use data to plot the vuechart
     getChartData () {
       let chartLabel = this.clickedName
       let likes = []
@@ -262,33 +264,6 @@ export default {
             borderColor: '#adedde',
             fill: false,
             data: followers
-          }
-        ]
-      }
-    },
-    removeData () {
-      let categoryLikes = this.likes
-      let index = categoryLikes.indexOf(Math.max(...categoryLikes))
-      this.distinctCategories.splice(index, 1)
-      this.likes.splice(index, 1)
-      this.followers.splice(index, 1)
-
-      this.chartdata = {
-        labels: this.distinctCategories,
-        datasets: [
-          {
-            label: 'Likes',
-            backgroundColor: '#f87979',
-            borderColor: '#f87979',
-            fill: false,
-            data: this.likes
-          },
-          {
-            label: 'Followers',
-            backgroundColor: '#adedde',
-            borderColor: '#adedde',
-            fill: false,
-            data: this.followers
           }
         ]
       }

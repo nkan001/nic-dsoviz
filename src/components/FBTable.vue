@@ -66,6 +66,7 @@ export default {
 </script>
 
 <style>
+/* Not scoped because some other tables (eg in LoadCSV) use some styles */
 .refresh-btn {
   padding-left: 30px
 }

@@ -29,7 +29,7 @@
                 color="white"
                 text-color="black"
                 label="Plot"
-                @click="getNo(); getData(); setUnique(); getFrequency()"
+                @click="getNo(); getData(); setUnique(); getFrequency(); miniTableData(); boundaries = false"
                 />
             <q-btn
             class="btn"
@@ -47,11 +47,35 @@
                 v-on:change="setBoundaries()"/>
             </div>
         </div>
-
+        <div class="row">
+          <div class="d1">
             <BarChart
             :chart-data="chartdata"
             :options="options"
             />
+          </div>
+          <div class="d2">
+            <q-table
+            v-show="boundaries == false"
+            class="table"
+            :data="miniTable"
+            :columns="columns"
+            row-key="id"
+            :filter="filter"
+            :loading="loading"
+            :sort-method="customSort"
+            binary-state-sort
+            >
+
+            <template v-slot:top>
+              <q-space />
+              <q-input outlined dense debounce="300" color="grey-9" v-model="filter">
+              </q-input>
+            </template>
+            </q-table>
+          </div>
+        </div>
+
         </div>
       </q-card-section>
     </q-card>
@@ -84,6 +108,25 @@ export default {
       boundaries: false,
       lo: 0,
       up: 10,
+      loading: false,
+      sortable: true,
+      filter: '',
+      columns: [
+        {
+          name: 'Label',
+          align: 'center',
+          label: 'Label',
+          field: 'Label',
+          sortable: true
+        },
+        {
+          name: 'Count',
+          label: 'Count',
+          field: 'Count',
+          sortable: true
+        }
+      ],
+      miniTable: [],
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -111,6 +154,7 @@ export default {
     getNo () {
       this.no = this.list.length
     },
+    // Making data into desireable data object instead of taking parseCsv onject from props
     getData () {
       let dataObj = []
       this.list.forEach(d => {
@@ -139,6 +183,7 @@ export default {
       })
       this.dataObj = dataObj
     },
+    // Getting unique lablels from user chosen input
     setUnique () {
       this.labelIndex = this.getLabelIndex
       this.yIndex = this.getYIndex
@@ -152,6 +197,7 @@ export default {
       }
       this.chartObj = lists
     },
+    // count the frequency of each type of unique label
     getFrequency () {
       for (let i = 0; i < this.uniqueLabels.length; i++) {
         let tempList = []
@@ -164,6 +210,7 @@ export default {
         this.getChartdata()
       }
     },
+    // plotting the chart
     getChartdata () {
       let freq = []
       for (let i = 0; i < this.uniqueLabels.length; i++) {
@@ -184,6 +231,7 @@ export default {
         ]
       }
     },
+    // when "Filter by Y range" button is clicked
     setBoundaries () {
       let filteredY = []
       let filteredX = []
@@ -205,12 +253,47 @@ export default {
           }
         ]
       }
+    },
+    miniTableData () {
+      let dataCount = []
+      this.uniqueLabels.forEach((d, i) => {
+        let one = {
+          'Label': d,
+          'Count': this.chartObj[i][d].length
+        }
+        dataCount.push(one)
+      })
+      this.miniTable = dataCount
+      console.log(this.uniqueLabels)
+    },
+    // For the quasar table (miniTable) allows for sorting of column data
+    customSort (rows, sortBy, descending) {
+      const data = [ ...rows ]
+
+      if (sortBy) {
+        data.sort((a, b) => {
+          const x = descending ? b : a
+          const y = descending ? a : b
+
+          if (sortBy === 'name') {
+            // string sort
+            return x[sortBy] > y[sortBy] ? 1 : x[sortBy] < y[sortBy] ? -1 : 0
+          } else {
+            // numeric sort
+            return parseFloat(x[sortBy]) - parseFloat(y[sortBy])
+          }
+        })
+      }
+
+      return data
     }
   },
   computed: {
+    // Index of the chosen label
     getLabelIndex () {
       return this.list.indexOf(this.x)
     },
+    // Index of the chosen frequency label
     getYIndex () {
       return this.list.indexOf(this.y)
     },
@@ -226,7 +309,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 h1, p {
     color: white;
 }
@@ -257,5 +340,19 @@ h1, p {
 
 .boundaries {
     margin-left: 25px;
+}
+
+.table {
+  margin-left: 5px;
+  margin-bottom: 10px;
+  padding: 20px;
+  width: 400px;
+}
+
+.d1 {
+  width: 70%;
+}
+.d2 {
+  width: 30%;
 }
 </style>
