@@ -24,7 +24,8 @@ const routes = [
       { path: '/geospatial/interactivechoropleth', name: 'InteractiveChoropleth', component: () => import('pages/geospatial/InteractiveChoropleth.vue') },
       { path: '/geospatial/sgparks', name: 'SGParks', component: () => import('pages/geospatial/SGParks.vue') },
       { path: '/components/fbcategoryrange', name: 'FBCategoryRange', component: () => import('components/FBCategoryRange.vue') },
-      { path: '/charts/loadcsv', name: 'LoadCSV', component: () => import('pages/charts/LoadCSV.vue') }
+      { path: '/charts/loadcsv', name: 'LoadCSV', component: () => import('pages/charts/LoadCSV.vue') },
+      { path: '/time/heatmap', name: 'Heatmap', component: () => import('pages/time/Heatmap.vue') }
     ]
   }
 ]

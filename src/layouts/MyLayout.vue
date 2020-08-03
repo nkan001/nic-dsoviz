@@ -130,6 +130,13 @@
           icon="timeline"
           label="Time"
         >
+          <q-item dense clickable class="app-menu-item" to="/time/heatmap">
+                <q-item-section avatar></q-item-section>
+                <q-item-section>
+                  <q-item-label>Heatmap</q-item-label>
+                  <q-item-label caption>Location Time Heatmap</q-item-label>
+                </q-item-section>
+            </q-item>
         </q-expansion-item>
         <q-expansion-item
           expand-separator

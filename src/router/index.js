@@ -6,8 +6,11 @@ import JsonCSV from 'vue-json-csv'
 
 import routes from './routes'
 
+import { HeatMapPlugin } from '@syncfusion/ej2-vue-heatmap'
+
 Vue.use(VueRouter)
 Vue.use(VueGeolocation)
+Vue.use(HeatMapPlugin)
 
 import * as VueGoogleMaps from 'vue2-google-maps'
 Vue.use(VueGoogleMaps, {
