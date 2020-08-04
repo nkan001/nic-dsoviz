@@ -63,6 +63,27 @@ quasar build
 
 ![FB Dashboard](./readme_images/FBDashboard.JPG)
 
+* Load CSV file from Browser
+    * used [vue-csv-import](https://www.npmjs.com/package/vue-csv-import) package
+    * allows user to choose the number of columns to view on the right table 
+    * left table allows user to pick the specific columns from CSV file to view. Data will be displayed in right Table
+
+![Loading CSV file from browser](./readme_images/LoadCSV1.JPG)
+* Numerical Plot
+    * continuing the visualisation after loading CSV into browser
+    * allows plotting of numerical y values. Input of x and y values can be chosen, options consisting of table column headers
+    * line chart above and bar chart below. More chart types can be added
+    * Filter by Y range button available to view specific range of values. Both charts change simultaneously
+
+![Numerical Plot tab](./readme_images/NumericalPlot.JPG)
+* Frequency Plot
+    * continuing the visualisation after loading CSV into browser
+    * allows the frequency count of unique labels
+    * small table on the right to summarise graph visuals
+    * columns can be sorted by acsending/ descending order of data
+
+![Frequncy Plot tab](./readme_images/FrequencyPlot.JPG)
+
 # Geospatial Component
 * [Singapore Parks](https://data.gov.sg/dataset/parks)
     * HTML and JS files found in src/pages/geospatial/SGParks folder
