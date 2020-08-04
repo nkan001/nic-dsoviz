@@ -31,7 +31,32 @@
             </q-form>
 
             <div class="control_wrapper">
-                <ejs-heatmap id="heatmap2" :dataSource='dataSource' :xAxis='xAxis' :yAxis='yAxis' :titleSettings='titleSettings' :legendSettings='legendSettings'></ejs-heatmap>
+                <ejs-heatmap id="heatmap1" :dataSource='dataSource' :xAxis='xAxis' :yAxis='yAxis' :titleSettings='titleSettings' :legendSettings='legendSettings'></ejs-heatmap>
+            </div>
+            <!-- Next Heatmap-->
+            <h1>Toggle Locations</h1>
+            <q-form class="q-gutter-md">
+            <br/>
+            <div class="days-box bg-grey-2 rounded-borders">
+                <q-option-group
+                name="row2"
+                v-model="locationOptions"
+                :options="options2"
+                type="checkbox"
+                color="cyan-6"
+                inline
+                />
+            </div>
+            </q-form>
+
+            <div class="control_wrapper">
+                <ejs-heatmap id="heatmap2"
+                :dataSource='dataSource'
+                :xAxis='xAxis'
+                :yAxis='yAxis'
+                :paletteSettings="paletteSettings"
+                :titleSettings='titleSettings'
+                :legendSettings='legendSettings'></ejs-heatmap>
             </div>
         </div>
 </q-page>
@@ -45,9 +70,9 @@ import { create, all } from 'mathjs'
 export default {
   data () {
     return {
-      selectedLocation: 'Bedok',
+      selectedLocation: 'Location 1',
       selectedTime: null,
-      locations: ['Simei', 'Bedok', 'Tampines'],
+      locations: ['Location 1', 'Location 2', 'Location 3'],
       timings: ['Show all', '7am-11am', '11am-3pm', '3pm-7pm', '7pm-9pm'],
       currentTime: null,
       xAxis: {
@@ -67,6 +92,14 @@ export default {
           fontStyle: 'Normal',
           fontFamily: 'Segoe UI'
         }
+      },
+      paletteSettings: {
+        palette: [
+          { value: 0, color: '#ebced7' },
+          { value: 50, color: '#e39db2' },
+          { value: 100, color: '#d96487' }
+        ],
+        type: 'Gradient'
       },
       originalYAxis: {
         labels: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun']
@@ -114,6 +147,7 @@ export default {
         showLabel: true,
         height: '150'
       },
+      locationOptions: ['Location 1', 'Location 2', 'Location 3'],
       accepted: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'],
       options: [
         {
@@ -143,6 +177,20 @@ export default {
         {
           label: 'Sun',
           value: 'Sun'
+        }
+      ],
+      options2: [
+        {
+          label: 'Location 1',
+          value: 'Location 1'
+        },
+        {
+          label: 'Location 2',
+          value: 'Location 2'
+        },
+        {
+          label: 'Location 3',
+          value: 'Location 3'
         }
       ]
     }
@@ -315,7 +363,11 @@ h1, span, p {
     margin-left: 22px;
 }
 
-#heatmap2 {
+#heatmap1, #heatmap2 {
     margin-left: 7px;
+}
+
+#heatmap2 {
+    margin-bottom: 50px;
 }
 </style>
