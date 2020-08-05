@@ -137,6 +137,13 @@
                   <q-item-label caption>Location Time Heatmap</q-item-label>
                 </q-item-section>
             </q-item>
+            <q-item dense clickable class="app-menu-item" to="/time/covidmap">
+                <q-item-section avatar></q-item-section>
+                <q-item-section>
+                  <q-item-label>COVID Choropleth</q-item-label>
+                  <q-item-label caption>COVID data with Time</q-item-label>
+                </q-item-section>
+            </q-item>
         </q-expansion-item>
         <q-expansion-item
           expand-separator

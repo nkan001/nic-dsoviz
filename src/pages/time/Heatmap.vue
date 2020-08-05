@@ -1,7 +1,9 @@
 <template>
   <q-page class="flex flex-center">
       <div class="col">
-          <h1>Time: {{ currentTime }}</h1>
+          <h1>
+            Time: {{ currentTime }}
+          </h1>
             <br>
             <Heatmap1/>
             <br/>

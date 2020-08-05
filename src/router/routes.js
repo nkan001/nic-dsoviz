@@ -25,7 +25,8 @@ const routes = [
       { path: '/geospatial/sgparks', name: 'SGParks', component: () => import('pages/geospatial/SGParks.vue') },
       { path: '/components/fbcategoryrange', name: 'FBCategoryRange', component: () => import('components/FBCategoryRange.vue') },
       { path: '/charts/loadcsv', name: 'LoadCSV', component: () => import('pages/charts/LoadCSV.vue') },
-      { path: '/time/heatmap', name: 'Heatmap', component: () => import('pages/time/Heatmap.vue') }
+      { path: '/time/heatmap', name: 'Heatmap', component: () => import('pages/time/Heatmap.vue') },
+      { path: '/time/covidmap', name: 'Covidmap', component: () => import('pages/time/CovidMap.vue') }
     ]
   }
 ]
