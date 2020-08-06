@@ -41,7 +41,7 @@ quasar build
     * used D3 library
     * axis can be changed using the dropdown menu
 
-![ScatterplotMenu](./readme_images/ScatterplotMenu.JPG)
+![ScatterplotMenu](./readme_images/ScatterplotMenu.JPG) 
 
 * GradientLine Chart
     * used [vuechart-js](https://vue-chartjs.org/)
@@ -112,3 +112,18 @@ quasar build
 
 ![Weather Search](./readme_images/Weather.JPG)
 
+# Time component
+* COVID-19 daily confirmed cases
+    * downloaded CSV from [GitHub data](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data)
+    * used echarts and leaflet packages
+    * displays data by date and plays automatically
+
+![COVID-19 Leaflet map](./readme_images/COVIDLeaflet.jpg)
+
+* Heatmap
+    * dummy data (randomly created)
+    * used [syncfusion heatmap](https://www.npmjs.com/package/@syncfusion/ej2-vue-heatmap) package
+    * data randomises when location is changed
+    * heatmap re-renders when new set of timings or dates are chosen
+
+![Random Heatmap](./readme_images/Heatmap.jpg)

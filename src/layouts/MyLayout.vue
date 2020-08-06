@@ -12,7 +12,7 @@
     <q-drawer v-model="leftDrawerOpen" :mini="miniState" :width="250" :breakpoint="500" show-if-above>
       <q-list dark>
         <q-item-label header></q-item-label>
-        <q-item clickable to="/" exact=true>
+        <q-item clickable to="/" :exact="exact">
           <q-item-section avatar>
             <q-icon name="home" />
           </q-item-section>
@@ -194,6 +194,7 @@ export default {
 
   data () {
     return {
+      exact: true,
       leftDrawerOpen: this.$q.platform.is.desktop,
       miniState: !this.$q.platform.is.desktop
     }

@@ -1,3 +1,4 @@
+// On Hover component doesnt work => content not showing up on the screen. Created the HTML version that works i SGParks folder
 <template>
   <q-page class="flex flex-center">
     <h1>Singapore Geospatial Park Data</h1>
@@ -33,6 +34,7 @@ export default {
         center: [103.8, 1.35],
         zoom: 11.15
       },
+      // All the geojson park data is here
       parks: {
         'type': 'FeatureCollection',
         'crs': {

@@ -35,6 +35,7 @@ export default {
     }
   },
   created () {
+    // Sets the real time and changes every second
     setInterval(() => {
       this.getTime()
     }, 1000)

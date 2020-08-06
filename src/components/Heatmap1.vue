@@ -160,6 +160,7 @@ export default {
     countRows (xAxis) {
       return xAxis.labels.length
     },
+    // this method is called whenever user selects a different preference, and data has to be re-rendered
     showData () {
       this.dataSource = this.originalDataSource
 
@@ -214,6 +215,7 @@ export default {
       this.dataSource = math.transpose(temp)
       this.timeData()
     },
+    // Adjusts the data based on what time range user selects
     timeData () {
       this.xAxis = this.originalXAxis
       if (this.selectedTime === '7am-11am') {
@@ -241,6 +243,7 @@ export default {
         this.dataSource = this.dataSource.slice(12, 15)
       }
     },
+    // Creating random data when user changes Location
     createData () {
       let matrix = []
       for (let i = 0; i < 15; i++) {
@@ -254,8 +257,6 @@ export default {
       this.originalDataSource = matrix
     }
   },
-  computed: {
-  },
   watch: {
     selectedTime: function (val) {
       // do something when the data changes.
@@ -268,6 +269,7 @@ export default {
         this.showData()
       }
     },
+    // When location changes, a new data set is created and the whole heatmap chart is rest to the default settings
     selectedLocation: function (val) {
       if (val) {
         this.createData()
